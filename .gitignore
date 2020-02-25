@@ -1,0 +1,7 @@
+
+#ignore thumbnails created by windows
+Thumbs.db
+.DS_Store
+
+#ignore build files
+_build
