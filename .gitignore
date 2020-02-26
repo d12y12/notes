@@ -5,3 +5,6 @@ Thumbs.db
 
 #ignore build files
 _build
+
+#ignore vscode config
+.vscode
