@@ -1,24 +1,15 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# This file only contains a selection of the most common options. For a full
-# list see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+# -*- coding: utf-8 -*-
 
-# -- Path setup --------------------------------------------------------------
-
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
+from datetime import datetime
 
 # -- Project information -----------------------------------------------------
 
 project = 'Yang的笔记'
-copyright = '2020, yang'
+copyright = '2018-{}, YANG'.format(datetime.now().year)
 author = 'yang'
 
 # The full version, including alpha/beta/rc tags
@@ -32,6 +23,12 @@ release = version
 # ones.
 extensions = [
 ]
+
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.txt': 'restructuredtext',
+    '.md': 'markdown',
+}
 
 master_doc = 'index'
 
@@ -66,3 +63,22 @@ html_static_path = ['_static']
 html_favicon = '_static/favicon.ico'
 
 html_logo = '_static/logo.png'
+
+html_theme_options = {
+    'logo_only': True,
+    'display_version': False,
+}
+
+latex_logo = '_static/logo.png'
+
+latex_documents = [('index', 'yang.tex', 'Yang的笔记',
+                    'Yang DONG', 'manual', 1)]
+
+numfig = True
+
+numfig_format = {
+    'figure': 'Figure %s', 
+    'table': 'Table %s',
+    'code-block': '例 %s', 
+    'section': 'Section %s'
+    }

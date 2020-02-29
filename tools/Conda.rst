@@ -3,10 +3,10 @@
 Conda
 ====================
 
-Conda 是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。 
-Conda 是为 Python 程序创建的，适用于 Linux，OS X 和 Windows，也可以打包和分发其他软件。
+Conda_ 是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。 
+Conda_ 是为 Python 程序创建的，适用于 Linux，OS X 和 Windows，也可以打包和分发其他软件。
 
-你可以使用 Conda 为不同的项目隔离开发环境，可以在不同的机器上重现开发环境。
+你可以使用 Conda_ 为不同的项目隔离开发环境，可以在不同的机器上重现开发环境。
 
 .. contents::
    :depth: 3
@@ -16,7 +16,7 @@ Conda 是为 Python 程序创建的，适用于 Linux，OS X 和 Windows，也�
 安装
 --------
 
-Conda 分为两个大版本
+Conda_ 分为两个大版本
 
 * Miniconda 只包含 Conda 和它的依赖
 * Anaconda 除了 Conda 还包含7500多个开源包
@@ -41,34 +41,35 @@ Anaconda 又包含命令行版本和图形版本。
 Windows Anaconda 图形版
 #########################
 
-1. `下载 Anaconda 安装程序 <https://www.anaconda.com/download/#windows>`_
-2. 双击打开安装程序
-3. 点击下一步
-4. 阅读使用许可协议，如果想继续安装点击“我同意”
-5. 选择安装类型，为“所有用户”安装需要管理员权限，如非必要，选择“只有我”点击下一步
-6. 选择安装位置，默认在 "C:\\Users\\<USERNAME>\\Anaconda3", 点击下一步
-7. 选择是否将 Anaconda 加入 PATH 环境变量。 Anaconda 的建议是不加到 PATH 环境变量，以免影响其他软件。
-   作为替代，使用开始菜单里的 Anaconda Navigator 和 Anaconda Prompt。
+#. `下载 Anaconda 安装程序 <https://www.anaconda.com/download/#windows>`_
+#. 双击打开安装程序
+#. 点击 :guilabel:`Next`
+#. 阅读使用许可协议，如果想继续安装点击 :guilabel:`I Agree`
+#. 选择安装类型，为“所有用户”安装需要管理员权限，如非必要，选择 :guilabel:`Just Me` 点击 :guilabel:`Next`
+#. 选择安装位置，默认在 "C:\\Users\\<USERNAME>\\Anaconda3", 点击 :guilabel:`Next`
+#. 选择是否将 Anaconda 加入 PATH 环境变量。 Anaconda 的建议是不加到 PATH 环境变量，以免影响其他软件。
+   作为替代，使用 
+   :menuselection:`开始菜单 --> Anaconda Navigator` 和 :menuselection:`开始菜单 --> Anaconda Prompt` 。
    
-   选择是否将 Anaconda 注册为默认的 Python 解释器。勾选，点击安装。
+   选择是否将 Anaconda 注册为默认的 Python 解释器。勾选，点击 :guilabel:`Install`。
 
    .. image:: ../_static/Conda/advance_option.png
       :scale: 80
 
-8. 如果想了解 Anaconda 正在安装的包，点击“显示详细”
-9. 安装完成点击下一步
-10. 可选项，如果需要安装 “PyCharm”，点击  https://www.anaconda.com/pycharm
+#. 如果想了解 Anaconda 正在安装的包，点击 :guilabel:`Show Details`
+#. 安装完成点击 :guilabel:`Next`
+#. 可选项，如果需要安装 “PyCharm”，点击链接 https://www.anaconda.com/pycharm
     
-    不需要的话，点击下一步
-11. 如果安装成功，这是你将看到 “感谢安装 Anaconda3 ”， 如果不想看说明，取消勾选，点击结束。
-12. 验证安装
+   不需要的话，点击 :guilabel:`Next`
+#. 如果安装成功，这是你将看到 “感谢安装 Anaconda3 ”， 如果不想看说明，取消勾选，点击 :guilabel:`Finish`。
+#. 验证安装
     
-    * 点击开始菜单，搜索并找到 Anaconda Navigator
-    * 点击开始菜单，搜索并找到 Anaconda Prompt, 双击打开命令行
+   * :menuselection:`开始菜单 --> Anaconda Navigator`
+   * :menuselection:`开始菜单 --> Anaconda Prompt`
       
-      * 输入 ``conda list`` , 如果安装正常，会显示安装的包及它们的版本
-      * 输入 ``python`` , 如果安装正常，版本信息会包含 Anaconda
-      * 输入 ``anaconda-navigator``, 如果安装正常会启动 Anaconda 图形界面
+     * 输入 ``conda list`` , 如果安装正常，会显示安装的包及它们的版本
+     * 输入 ``python`` , 如果安装正常，版本信息会包含 Anaconda
+     * 输入 ``anaconda-navigator``, 如果安装正常会启动 Anaconda 图形界面
 
 Linux Miniconda
 ################
@@ -167,15 +168,15 @@ PowerShell
 
 * 图形界面
   
-  打开 Anaconda Navigator
+  :menuselection:`开始菜单 --> Anaconda Navigator`
 
   .. image:: ../_static/Conda/anaconda_navigator.png
 
-  点击 Channels
+  点击 :guilabel:`Channels`
 
   .. image:: ../_static/Conda/channels.png
 
-  点击 Add， 并加入新的源地址
+  点击 :guilabel:`Add`， 并加入新的源地址
 
   .. image:: ../_static/Conda/channels_added.png
 
@@ -246,15 +247,15 @@ Anaconda 创建的环境默认位置是 ``C:\Users\<USERNAME>\Anaconda3\envs`` �
 
 * 图形界面
 
-  点击 Environment
+  点击 :guilabel:`Environments`
 
   .. image:: ../_static/Conda/anaconda_env.png
 
-  点击 Create ， 输入环境名，选择 Python 版本
+  点击 :guilabel:`Create` ， 输入环境名，选择 Python 版本
 
   .. image:: ../_static/Conda/anaconda_create.png
   
-  点击 Create
+  点击 :guilabel:`Create`
 
 * 命令行
 
@@ -322,7 +323,7 @@ Anaconda 创建的环境默认位置是 ``C:\Users\<USERNAME>\Anaconda3\envs`` �
 
 * 图形界面
 
-  点击 Environment
+  点击 :guilabel:`Environments`
 
   .. image:: ../_static/Conda/anaconda_env_check.png
   
@@ -353,7 +354,8 @@ Anaconda 创建的环境默认位置是 ``C:\Users\<USERNAME>\Anaconda3\envs`` �
 
 * 图形界面
   
-  在 Environment 中点击想要激活的环境， 点击“三角形”，点击打开命令行或者打开 Python
+  在 :guilabel:`Environments` 中点击想要激活的环境， :menuselection:`三角形 --> Open Terminal`
+  或者 :menuselection:`三角形 --> Open Python` 
 
 * 命令行
 
@@ -404,6 +406,15 @@ Anaconda 创建的环境默认位置是 ``C:\Users\<USERNAME>\Anaconda3\envs`` �
     ::
 
        conda env create -f environment.yml
+
+  事实上，这样是不行的， 因为这会导出所有包及依赖，很多都是操作系统不兼容的。。。
+
+  导出时使用
+  ::
+      
+      conda env export --from-history > environment.yml
+  
+  然后要小修补一下，比如去掉添加的频道，去掉 Prefix 。
 
 * 完全打包
 
@@ -459,7 +470,7 @@ Anaconda 创建的环境默认位置是 ``C:\Users\<USERNAME>\Anaconda3\envs`` �
 
 * 图形界面
   
-  在 Environment 中点击想要删除的环境， 点击“删除”
+  在 :guilabel:`Environments` 中点击想要删除的环境， 点击 :guilabel:`Remove`
 
 * 命令行
   ::
@@ -474,8 +485,9 @@ Anaconda 创建的环境默认位置是 ``C:\Users\<USERNAME>\Anaconda3\envs`` �
 
 * 图形界面
 
-  在 Environment 中点击想要查看的环境，右侧有包列表，可以在下拉菜单中
-  选择“已安装”，“未安装”，“可升级”，“已选中”，及“全部”进行过滤
+  在 :guilabel:`Environments` 中点击想要查看的环境，右侧有包列表，可以在下拉菜单中
+  选择 :guilabel:`Installed`， :guilabel:`Not installed`， :guilabel:`Updatable`，
+  :guilabel:`Selected`，及 :guilabel:`All` 进行过滤
 
 * 命令行
 
@@ -504,21 +516,21 @@ Anaconda 创建的环境默认位置是 ``C:\Users\<USERNAME>\Anaconda3\envs`` �
 
 * 图形界面
 
-  在 Environment 中点击想要安装包的环境，在下拉菜单中选择“未安装”，
+  在 :guilabel:`Environments` 中点击想要安装包的环境，在下拉菜单中选择 :guilabel:`Not installed`，
   然后在搜索栏搜索想要安装的包，比如 “numpy”
 
   .. image:: ../_static/Conda/package_search.png
 
-  点击 “numpy”， 在选项菜单中选择 “mark for installation”
+  点击 :guilabel:`numpy`， 在选项菜单中选择 :guilabel:`mark for installation`
   
-  点击 “Apply”
+  点击 :guilabel:`Apply`
 
   .. image:: ../_static/Conda/package_install.png
 
-  点击 “Apply”
+  点击 :guilabel:`Apply`
 
-  安装完毕后，在 Environment 中点击想要安装包的环境，在下拉菜单中
-  选择“已安装”查看
+  安装完毕后，在 :guilabel:`Environments` 中点击想要安装包的环境，在下拉菜单中
+  选择 :guilabel:`Installed` 查看
 
 * 命令行
 
@@ -552,12 +564,12 @@ Anaconda 创建的环境默认位置是 ``C:\Users\<USERNAME>\Anaconda3\envs`` �
 
 * 图形界面
   
-  在 Environment 中点击想要安装包的环境，在下拉菜单中选择“已安装”，
+  在 :guilabel:`Environments` 中点击想要安装包的环境，在下拉菜单中选择 :guilabel:`Installed`，
   然后在搜索栏搜索想要安装的包，比如 “numpy”
 
-  点击 “numpy”， 在选项菜单中选择 “mark for removal”
+  点击 :guilabel:`numpy`， 在选项菜单中选择 :guilabel:`mark for removal`
   
-  点击 “Apply”
+  点击 :guilabel:`Apply`
 
 * 命令行
 
@@ -678,5 +690,5 @@ Conda vs. pip vs. virtualenv 命令
 参考
 ------
 
-1. `Conda <https://conda.io/projects/conda/en/latest/>`_
-2. `conda cheat sheet <https://conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf>`_
+#. `Conda <https://conda.io/projects/conda/en/latest/>`_
+#. `conda cheat sheet <https://conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf>`_

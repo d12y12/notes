@@ -7,4 +7,4 @@
    :maxdepth: 2
    
    Conda.rst
-   
+   reStructuredText.rst
