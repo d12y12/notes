@@ -74,6 +74,13 @@ latex_logo = '_static/logo.png'
 latex_documents = [('index', 'yang.tex', 'Yang的笔记',
                     'Yang DONG', 'manual', 1)]
 
+latex_engine = 'xelatex'
+latex_use_xindy = False
+latex_elements = {
+    'preamble': '\\usepackage[UTF8]{ctex}\n',
+}
+latex_show_urls = 'footnote'
+
 numfig = True
 
 numfig_format = {
@@ -82,3 +89,4 @@ numfig_format = {
     'code-block': '例 %s', 
     'section': 'Section %s'
     }
+

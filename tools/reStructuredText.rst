@@ -66,7 +66,7 @@ Docutils_ 提供基本的 reStructuredText_ 语法，而 Sphinx_ 则扩展此语
 
    ---------
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果:
 
@@ -96,7 +96,7 @@ Docutils_ 提供基本的 reStructuredText_ 语法，而 Sphinx_ 则扩展此语
       
          这是个内嵌引述。
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果:
 
@@ -129,7 +129,7 @@ Docutils_ 提供基本的 reStructuredText_ 语法，而 Sphinx_ 则扩展此语
    孤帆远影碧空尽，
    唯见长江天际流。
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果:
 
@@ -164,7 +164,7 @@ Docutils_ 提供基本的 reStructuredText_ 语法，而 Sphinx_ 则扩展此语
       def hello(name):
           print("Hello", name.title())
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果:
 
@@ -196,7 +196,7 @@ Docutils_ 提供基本的 reStructuredText_ 语法，而 Sphinx_ 则扩展此语
       def hello(name):
           print("Hello", name.title())
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果：
 
@@ -222,7 +222,7 @@ Docutils_ 提供基本的 reStructuredText_ 语法，而 Sphinx_ 则扩展此语
    
    .. highlight:: default
 
-.. only:: builder_html
+.. only:: html or readthedocs 
    
    效果：
 
@@ -248,7 +248,7 @@ Docutils_ 提供基本的 reStructuredText_ 语法，而 Sphinx_ 则扩展此语
       def hello(name):
           print("Hello", name.title())
 
-.. only:: builder_html
+.. only:: html or readthedocs 
    
    效果：
 
@@ -301,7 +301,7 @@ Docutils_ 提供基本的 reStructuredText_ 语法，而 Sphinx_ 则扩展此语
 
    这是一个内联 ``code`` 
 
-.. only:: builder_html
+.. only:: html or readthedocs 
    
    效果：
 
@@ -332,7 +332,7 @@ Docutils_ 提供基本的 reStructuredText_ 语法，而 Sphinx_ 则扩展此语
          :linenos:
          :lines: 1-3
 
-.. only:: builder_html
+.. only:: html or readthedocs 
    
    效果：
 
@@ -360,7 +360,7 @@ Docutils_ 提供基本的 reStructuredText_ 语法，而 Sphinx_ 则扩展此语
     * 杜甫
     * 白居易
 
-.. only:: builder_html
+.. only:: html or readthedocs 
    
    效果：
 
@@ -383,7 +383,7 @@ Docutils_ 提供基本的 reStructuredText_ 语法，而 Sphinx_ 则扩展此语
 
    * 父列表继续
 
-.. only:: builder_html
+.. only:: html or readthedocs 
    
    效果：
 
@@ -430,7 +430,7 @@ Docutils_ 提供基本的 reStructuredText_ 语法，而 Sphinx_ 则扩展此语
    4. 杜甫
    5. 白居易
 
-.. only:: builder_html
+.. only:: html or readthedocs 
    
    效果：
 
@@ -490,7 +490,7 @@ reStructuredText_ 不支持生成带复选框的任务列表，但如下方式�
    *爬虫*
       一段自动抓取互联网信息的程序，从互联网上抓取对于我们有价值的信息。
 
-.. only:: builder_html
+.. only:: html or readthedocs 
    
    效果：
 
@@ -525,7 +525,7 @@ reStructuredText_ 不支持生成带复选框的任务列表，但如下方式�
       * 列表
       * 每行三个
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果：
 
@@ -578,7 +578,7 @@ reStructuredText_ 不支持生成带复选框的任务列表，但如下方式�
 
    /V         A VMS/DOS-style option.
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果：
 
@@ -635,7 +635,7 @@ reStructuredText_ 不支持生成带复选框的任务列表，但如下方式�
       True   True   True
       =====  =====  ======
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果：
 
@@ -682,7 +682,7 @@ reStructuredText_ 不支持生成带复选框的任务列表，但如下方式�
       | body row 5             | Use the command ``ls | more``.   |
       +------------------------+------------+---------------------+
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果：
 
@@ -736,7 +736,7 @@ CSV表格
       crunchy, now would it?"
       "Gannet Ripple", 1.99, "On a stick!"
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果：
 
@@ -763,7 +763,7 @@ CSV表格
       :widths: 15, 10, 30
       :header-rows: 1
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果：
 
@@ -810,7 +810,7 @@ CSV表格
       - 1.99
       - On a stick!
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果：
 
@@ -857,7 +857,7 @@ CSV表格
      | 邮件 d12y12@hotmail.com
      | 这个 HTML 不会被转换，但 Latex PDF 会转换： www.google.com
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果：
      
@@ -877,7 +877,7 @@ CSV表格
 
        使用 `必应 <https://cn.bing.com/>`_ 进行搜索。 
 
-    .. only:: builder_html
+    .. only:: html or readthedocs 
 
        效果：
 
@@ -900,7 +900,7 @@ CSV表格
 
        .. _Python: http://www.python.org/
 
-    .. only:: builder_html
+    .. only:: html or readthedocs 
 
        效果：
 
@@ -930,7 +930,7 @@ CSV表格
 
          点这里就到这里了。
 
-    .. only:: builder_html
+    .. only:: html or readthedocs 
 
        效果：
 
@@ -957,7 +957,7 @@ CSV表格
        | 这里指向图片引用, 参加 :ref:`my-figure` 。
        | 这里指向表格引用, 参加 :ref:`my_table`.
 
-    .. only:: builder_html
+    .. only:: html or readthedocs 
 
        效果：
  
@@ -981,7 +981,7 @@ CSV表格
        | `注脚4`_     Latex不支持
        | `CIT2002`_   Latex不支持
   
-    .. only:: builder_html
+    .. only:: html or readthedocs 
        
        效果:
 
@@ -1008,7 +1008,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
    .. [#f1] 这是注脚1
    .. [#f2] 这是注脚2
 
-.. only:: builder_html
+.. only:: html or readthedocs 
    
    效果:
 
@@ -1038,7 +1038,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
       的顺序，不是按引用的顺序。这里注脚后面括号里的是只以注脚的方式被引用的地方。
    .. [#] 自动编号，所以是5 
 
-.. only:: builder_html
+.. only:: html or readthedocs 
    
    效果:
 
@@ -1065,7 +1065,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
    .. [*] 符号注脚在这
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果:
 
@@ -1088,7 +1088,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
    .. [CIT2002] 这是引用文献，和注脚类似，只是不需要编号
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果:
 
@@ -1117,7 +1117,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
      .. |RST| replace:: reStructuredText
      .. _RST: http://docutils.sourceforge.net/rst.html
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1143,7 +1143,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
         :height: 20
         :width: 20
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1167,7 +1167,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
      | version |version|
      | today   |today|
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1197,7 +1197,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
      | 参考 :doc:`Conda <Conda>`  相对路径
      | 参考 :doc:`/tools/Conda`   绝对路径
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1215,11 +1215,11 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
      :caption: 下载文档
      :name: download_role
 
-      .. only:: builder_html
+      .. only:: html or readthedocs 
 
          下载 :download:`hello <../_static/reStructuredText/hello.txt>`
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1268,7 +1268,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
          :scale: 50
          :align: center
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1346,7 +1346,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
          |    :scale: 25 %                                   |                       |
          +---------------------------------------------------+-----------------------+
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1400,7 +1400,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
      | 加粗 **bold**
      | 代码 ``code``
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1430,7 +1430,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
      | 下标：`text`:sub:
      | 上标：`text`:sup:
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1456,7 +1456,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
      .. default-role:: title-reference
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1483,7 +1483,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
      :guilabel:`Cancel`
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
   
@@ -1499,7 +1499,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
      :menuselection:`Start --> Programs`
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1518,7 +1518,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
      :abbr:`LIFO (last-in, first-out)`.
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1536,7 +1536,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
       这是一个参见事项。
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1550,7 +1550,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
       这是一个注意事项。
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1564,7 +1564,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
       这是一个警告事项。
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1578,7 +1578,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
       这是一个危险事项。
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1592,7 +1592,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
       这是一个错误事项。
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1606,7 +1606,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
       这是一个提示事项。
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1620,7 +1620,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
       这是一个重要事项。
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1634,7 +1634,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
       这是一个注释事项。
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1648,7 +1648,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
       这是一个贴士事项。
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1662,7 +1662,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
       这是一个警告事项。
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1676,7 +1676,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
       这是一个自定事项。
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1689,7 +1689,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
    .. versionadded:: 2.5
       The *spam* parameter.
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1701,7 +1701,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
    .. versionchanged:: 2.5
       The *spam* parameter.
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1713,7 +1713,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
    .. deprecated:: 2.5
       Use :func:`spam` instead.
 
-  .. only:: builder_html
+  .. only:: html or readthedocs 
 
      效果:
 
@@ -1771,7 +1771,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
    :term:`environment`
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果:
 
@@ -1808,7 +1808,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
          f(x) & = & x^2 + 2xy + y^2
       \end{eqnarray}
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果:
 
@@ -1832,7 +1832,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
       (a - b)^2 = a^2 - 2ab + b^2
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果:
 
@@ -1855,7 +1855,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
    
    .. math:: (a + b)^2 = a^2 + 2ab + b^2
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果:
 
@@ -1876,7 +1876,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
       α_t(i) = P(O_1, O_2, … O_t, q_t = S_i λ)
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果:
 
@@ -1905,7 +1905,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
         the body of the topic, and are
         interpreted as body elements.
   
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果:
 
@@ -1930,7 +1930,7 @@ Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
         the body of the sidebar, and are
         interpreted as body elements.
 
-.. only:: builder_html
+.. only:: html or readthedocs 
 
    效果:
 
