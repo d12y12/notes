@@ -18,6 +18,7 @@
 ------
 
 * **标记语言**：
+  :doc:`Markdown <tools/markdown>` |
   :doc:`reStructuredText <tools/reStructuredText>`
 
 * **环境包管理**：
@@ -29,6 +30,7 @@
    :caption: 工具篇
 
    tools/Conda
+   tools/markdown
    tools/reStructuredText
 
 教程篇
