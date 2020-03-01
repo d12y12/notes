@@ -1,12 +1,16 @@
 # Markdown
 
-Markdown 是一种全文本格式，用来写作结构化文档。 Markdown 的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。 Markdown 的缺点在于没有标准，只有一个最初的格式描述， CommonMark 在做标准化的事，但目前为止还没有如 reStructuredText 一样的标准。
+Markdown 是一种全文本格式，用来写作结构化文档。 Markdown 的语法全由一些符号所组成，
+这些符号经过精挑细选，其作用一目了然。Markdown 的缺点在于没有标准，只有一个最初的格式描述，
+CommonMark 在做标准化的事，但目前为止还没有如 reStructuredText 一样的标准。
 
 - GitHub Flavored Markdown (GFM)
 
-    由于 Markdown 没有明确的标准，所以存在各种味道( Flavored )的 Markdown ，简单地说就是各自增加的自己的一些语法或者渲染的方式不一样。
+    由于 Markdown 没有明确的标准，所以存在各种味道( Flavored )的 Markdown ，
+    简单地说就是各自增加的自己的一些语法或者渲染的方式不一样。
 
-    GitHub 味的 Markdown 就是 GitHub 在 [CommonMark][CommonMark] 规格基础上，对语法格式和语义的定义，文档请见 [GitHub Flavored Markdown Spec][GitHub Flavored Markdown Spec] 。
+    GitHub 味的 Markdown 就是 GitHub 在 [CommonMark][CommonMark] 规格基础上，
+    对语法格式和语义的定义，文档请见 [GitHub Flavored Markdown Spec][GitHub Flavored Markdown Spec] 。
 
 > **注**： Sphinx 插件 recommonmark 支持使用 CommonMark 的 Markdown 语法，不支持 GFM ，所以本文中很多示例在 Sphinx 显示不正常。
 
@@ -14,9 +18,21 @@ Markdown 是一种全文本格式，用来写作结构化文档。 Markdown 的�
 
 GFM 支持的目录方式如下:
 
-    - [简介](#简介)
-    - [标题](#标题)
-      - 章节标题(#章节标题)
+    1. [Example](#example)
+    2. [Example2](#example2)
+    3. [Third Example](#third-example)
+    4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
+    5. [第五个中文例子](#第五个中文例子)
+
+    这里是你的章节标题
+
+    # Example
+    # Example2
+    # Third Example
+    # [Fourth Example](http://www.fourthexample.com) 
+    # 第五个中文例子
+
+还有很多生成目录的工具，比如在 VSCode 里用 markdown-all-in-one 扩展。
 
 ## 标题
 
@@ -33,7 +49,8 @@ GFM 支持的目录方式如下:
 
 > **注**:
 >
-> 1. 还有一种 `Setext` 形式，使用少于3个空格缩进的连续 `=` (一级标题)和 `-` (二级标题)，任何数量的 `=` 和 `-` 都可以有效果， `-` 数量必须大于1个，单一的 `-` 会被处理成列表。
+> 1. 还有一种 `Setext` 形式，使用少于3个空格缩进的连续 `=` (一级标题)和 `-` (二级标题)，
+>    任何数量的 `=` 和 `-` 都可以有效果， `-` 数量必须大于1个，单一的 `-` 会被处理成列表。
 >    例如：
 >
 >           这是一级标题
@@ -48,7 +65,8 @@ GFM 支持的目录方式如下:
 
 ### 分隔线
 
-你可以在一行中用3个以上的星号、减号、底线来建立一个分隔线( Thematic breaks )，行内不能有其他东西。 你也可以在星号或是减号中间插入空格。
+你可以在一行中用3个以上的星号、减号、底线来建立一个分隔线( Thematic breaks )，行内不能有其他东西。
+你也可以在星号或是减号中间插入空格。
 例如：
 
     * * *
@@ -68,7 +86,8 @@ GFM 支持的目录方式如下:
 
 ### 段落
 
-一个 Markdown 段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行(空行的定义是显示上看起来像是空的，便会被视为空行。 比方说，若某一行只包含空格和制表符，则该行也会被视为空行)。 普通段落不该用空格或制表符来缩进。
+一个 Markdown 段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行(空行的定义是显示上看起来像是空的，
+便会被视为空行。 比方说，若某一行只包含空格和制表符，则该行也会被视为空行)。 普通段落不该用空格或制表符来缩进。
 
 ### 换行
 
@@ -102,11 +121,10 @@ GFM 支持的目录方式如下:
 
 ## 代码
 
-和程序相关的写作或是标签语言原始码通常会有已经排版好的代码区块，通常这些区块我们并不希望它以一般段落文件的方式去排版，而是照原来的样子显示。 代码区块中，一般的 Markdown 语法不会被转换，像是星号便只是星号。
-
 ### 缩进代码块
 
-要在 Markdown 中建立代码区块很简单，只要简单地缩进4个空格或是1个制表符就可以，一个代码区块会一直持续到没有缩进的那一行(或是文件结尾)。
+要在 Markdown 中建立代码区块很简单，只要简单地缩进4个空格或是1个制表符就可以，
+一个代码区块会一直持续到没有缩进的那一行(或是文件结尾。
 例如：
 
     这是一段代码：
@@ -155,7 +173,8 @@ GFM 支持的所有语言请参考 [GFM支持语言列表][GFM支持语言列表
 
 ## 引用
 
-Markdown 标记区块引用是使用类似电子邮件中用 `>` 的引用方式。 如果你还熟悉在邮件中的引言部分，你就知道怎么在Markdown文件中建立一个区块引用，那会看起来像是你自己先断好行，然后在每行的最前面加上 `>`：
+Markdown 标记区块引用是使用类似电子邮件中用 `>` 的引用方式。 如果你还熟悉在邮件中的引言部分，
+你就知道怎么在Markdown文件中建立一个区块引用，那会看起来像是你自己先断好行，然后在每行的最前面加上 `>`：
 
     > 这个引用包含两个段落。
     >
@@ -283,18 +302,15 @@ Markdown 支持有序列表和无序列表。
 
 ### 任务列表
 
-**GFM 扩展项**，在列表项上增加了复选框。在列表标识(-，*，+)后加空格再加[ ]及1个空格，[ ]中如果是空格则复选框未被选中，如为 `x` 则复选框被选中。
+**GFM 扩展项**，在列表项上增加了复选框。在列表标识(-，*，+)后加空格再加[ ]及1个空格，
+[ ]中如果是空格则复选框未被选中，如为 `x` 则复选框被选中。
 例如：
 
     - [ ] 吃饭
     - [x] 睡觉
     - [ ] 打豆豆
 
-- [ ] 吃饭
-- [x] 睡觉
-- [ ] 打豆豆
-
-> **注**:  recommonmark 不支持 GFM 扩展项，所以无论是 HTML 还是 PDF ， 你都看不到复选框。
+> **注**: 这里不展示了， 因为 recommonmark 不支持 GFM 扩展项。
 
 ## 表格
 
@@ -314,7 +330,7 @@ Markdown 支持有序列表和无序列表。
     | 左对齐   | :---  |
     | 右对齐   | ---： |
 
-> **注**:  recommonmark 不支持 GFM 扩展项，所以无论是 HTML 还是 PDF ， 你都不会看到表格，所以这里把展示去掉了。
+> **注**: 这里不展示了， 因为 recommonmark 不支持 GFM 扩展项。
 
 ## 链接
 
@@ -326,16 +342,13 @@ Markdown 支持两种形式的链接语法： 内联式和引用式两种形式�
 
 - 内联式
 
-  要建立一个行内式的链接，只要在方块括号后面紧接着圆括号并插入网址链接即可，如果你还想要加上链接的 title 文字，只要在网址后面，用双引号把 title 文字包起来即可。
+  要建立一个行内式的链接，只要在方块括号后面紧接着圆括号并插入网址链接即可，
+  如果你还想要加上链接的 title 文字，只要在网址后面，用双引号把 title 文字包起来即可。
   例如：
 
       This is [an example](http://example.com/ "Title") inline link.
 
       [This link](http://example.net/) has no title attribute.
-
-  This is [an example](http://example.com/ "Title") inline link.
-
-  [This link](http://example.net/) has no title attribute.
 
   > **注**： recommonmark 不支持 title 。
 
@@ -343,23 +356,20 @@ Markdown 支持两种形式的链接语法： 内联式和引用式两种形式�
   例如：
 
       这只[熊猫](../_static/markdown/panda.png)来自中国。
-
-  这只[熊猫](../_static/markdown/panda.png)来自中国。
+  
+  > **注**： 我不推荐这种方式，因为生成 PDF 可能无法使用。
 
 - 引用式
 
-  引用式的链接是在链接文字的括号后面再接上另一个方括号，而在第二个方括号里面要填入用以辨识链接的标记。
+  引用式的链接是在链接文字的括号后面再接上另一个方括号，
+  而在第二个方括号里面要填入用以辨识链接的标记。
   例如：
   
       This is [an example][id] reference-style link.
 
-  This is [an example][id] reference-style link.
-
   接着，在文件的任意处，你可以把这个标记的链接内容定义出来：
 
       [id]: http://example.com/  "Optional Title Here"
-
-  [id]: http://example.com/  "Optional Title Here"
 
   链接的定义可以放在文件中的任何一个地方，我比较偏好把它放在文件最后面.
 
@@ -376,36 +386,29 @@ Markdown 支持两种形式的链接语法： 内联式和引用式两种形式�
 
       如支持扩展， 可直接链接， 如 www.google.com
 
-  visit <https://cn.bing.com/>
-
-  <d12y12@hotmail.com>
-
-  如支持扩展， 可直接链接， 如 www.google.com
-
   > **注**： 此处 HTML 中 www.google.com 不是链接， Latex PDF 中 www.google.com 是链接
 
 ### 注脚
 
-GFM 并不支持注脚( footnotes )， 但鉴于其作用， 还是把它写出来了， 注脚的定义与引用链接一样， 只是在[]方括号及引用定义内加上 `^` 。
+GFM 并不支持注脚( footnotes )， 但鉴于其作用， 还是把它写出来了， 注脚的定义与引用链接一样，
+只是在[]方括号及引用定义内加上 `^` 。
 例如:
 
     这是一个链接到谷歌的[^注脚]。
 
     [^注脚]: http://www.google.com
 
-这是一个链接到谷歌的[^注脚]。
-
-[^注脚]: http://www.google.com
-
-> 注：这里显示不正常是正常的，因为 GFM 不支持注脚。
+> 注：这里不展示了，因为 CommonMark 和 GFM 都不支持注脚。
 
 ## 图片
 
-Markdown 使用一种和链接很相似的语法来标记图片，同样也允许两种样式：内联式和引用式。到目前为止， Markdown 还没有办法指定图片的宽高。
+Markdown 使用一种和链接很相似的语法来标记图片，同样也允许两种样式：内联式和引用式。
+到目前为止， Markdown 还没有办法指定图片的宽高。
 
 - 内联式
 
-  行内式的图片语法是一个惊叹号 `!`，接着一个方括号，里面放上图片的替代文字，接着一个普通括号，里面放上图片的网址，最后还可以用引号包住并加上 选择性的 'title' 文字。
+  行内式的图片语法是一个惊叹号 `!`，接着一个方括号，里面放上图片的替代文字，
+  接着一个普通括号，里面放上图片的网址，最后还可以用引号包住并加上 选择性的 'title' 文字。
   例如：
 
       ![本地图片](/_static/markdown/apple_logo.png)
@@ -415,6 +418,8 @@ Markdown 使用一种和链接很相似的语法来标记图片，同样也允�
   ![本地图片](/_static/markdown/apple_logo.png)
 
   ![网上图片](/_static/markdown/tesla_logo.jpg "Optional title")
+
+  > **注**： recommonmark 不支持 title 。
 
 - 引用式
 
@@ -482,13 +487,12 @@ a * foo bar*
 
     ~~Hi~~ Hello, world!
 
-~~Hi~~ Hello, world!
-
-> **注**:  recommonmark 不支持 GFM 扩展项，所以无论是 HTML 还是 PDF ， 你都不会看到删除线
+> **注**: 这里不展示了， 因为 recommonmark 不支持 GFM 扩展项。
 
 ### 反斜杠转义
 
-Markdown可以利用反斜杠来插入一些在语法中有其它意义的符号，Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：
+Markdown 可以利用反斜杠来插入一些在语法中有其它意义的符号，
+Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：
 
     \   反斜线
     `   反引号
