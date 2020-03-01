@@ -4,9 +4,9 @@ Conda
 ====================
 
 Conda_ 是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。 
-Conda_ 是为 Python 程序创建的，适用于 Linux，OS X 和 Windows，也可以打包和分发其他软件。
+Conda 是为 Python 程序创建的，适用于 Linux，OS X 和 Windows，也可以打包和分发其他软件。
 
-你可以使用 Conda_ 为不同的项目隔离开发环境，可以在不同的机器上重现开发环境。
+你可以使用 Conda 为不同的项目隔离开发环境，可以在不同的机器上重现开发环境。
 
 .. contents::
    :depth: 3
@@ -16,7 +16,7 @@ Conda_ 是为 Python 程序创建的，适用于 Linux，OS X 和 Windows，也�
 安装
 --------
 
-Conda_ 分为两个大版本
+Conda 分为两个大版本
 
 * Miniconda 只包含 Conda 和它的依赖
 * Anaconda 除了 Conda 还包含7500多个开源包
@@ -407,14 +407,18 @@ Anaconda 创建的环境默认位置是 ``C:\Users\<USERNAME>\Anaconda3\envs`` �
 
        conda env create -f environment.yml
 
-  事实上，这样是不行的， 因为这会导出所有包及依赖，很多都是操作系统不兼容的。。。
+  .. important::
 
-  导出时使用
-  ::
+     事实上，这样导出是不行的， 因为这会导出所有包及依赖，很多都是操作系统不兼容的。。。
+
+     要想使用非操作系统相关的，只需要导出你通过 ``install`` 命令安装的包，不含它们的依赖，
+     不含创建环境的依赖。 这种情况下导出时要使用::
       
-      conda env export --from-history > environment.yml
+        conda env export --from-history > environment.yml
   
-  然后要小修补一下，比如去掉添加的频道，去掉 Prefix 。
+     然后要小修补一下，比如去掉 Prefix ，是否要去掉添加的国内加速频道，如果国内使用，就保留，
+     如果放国外，可能默认的频道更快。
+     以 Read the Docs 为例，使用清华的镜像频道比默认频道慢接近一个量级。
 
 * 完全打包
 
@@ -676,8 +680,6 @@ Conda vs. pip vs. virtualenv 命令
      - ``conda update python`` [#f2]_
      - X
      - X
-
-.. rubric:: 注脚
 
 .. [#f1] ``conda activate`` 适用于 conda 4.6版本及以上。 4.6之前的版本:
           
