@@ -7,10 +7,10 @@ Sphinx & ReadTheDocs & GitHub 集成写作环境
 
 R.I.P. "Konami Code" creator Kazuhisa Hashimoto, Feb 25, 2020.
 
-`Sphinx`_ 是一款工具可以生成文档项目，把 `reStructuredText`_ 文件转换为其他文件格式
+Sphinx_ 是一款工具可以生成文档项目，把 reStructuredText_ 文件转换为其他文件格式
 (如 HTML, PDF, MAN, EPUB)，并自动生成交叉引用，索引等待。
 
-`Read the Docs`_ 为开源社区提供文档托管的平台，支持 `Sphinx`_ 工具，它可以从你的 
+`Read the Docs`_ 为开源社区提供文档托管的平台，支持 Sphinx_ 工具，它可以从你的 
 Subversion_, Bazaar_, Git_, 和 Mercurial_ 仓库拉取源文件，构建文档，并更新在线文档。 
 
 `GitHub`_ 是一个面向开源及私有开发项目的托管平台。 
@@ -24,13 +24,8 @@ Subversion_, Bazaar_, Git_, 和 Mercurial_ 仓库拉取源文件，构建文档�
 .. _Mercurial: https://www.mercurial-scm.org/
 .. _GitHub: https://github.com/
 
-本文主要介绍如何使用 `Sphinx`_ 生成文档项目，将项目托管在 `GitHub`_ ，并使用 `Read the Docs`_ 
+本文主要介绍如何使用 Sphinx 生成文档项目，将项目托管在 GitHub ，并使用 Read the Docs 
 构建并托管生成的 HTML ，进而实现文档的持续生成及在线浏览。
-
-.. contents::
-   :depth: 3
-   :local:
-   :backlinks: none
 
 注册账号
 ---------
@@ -43,7 +38,7 @@ Subversion_, Bazaar_, Git_, 和 Mercurial_ 仓库拉取源文件，构建文档�
 创建远程仓库
 ~~~~~~~~~~~~
 
-一般情况下，你登陆 `GitHub`_ 后，主页的左侧会显示你的仓库。
+一般情况下，你登陆 GitHub 后，主页的左侧会显示你的仓库。
 
 .. image:: ../_static/Sphinx_RTD_Github/gh0.png
 
@@ -70,8 +65,8 @@ Subversion_, Bazaar_, Git_, 和 Mercurial_ 仓库拉取源文件，构建文档�
 创建本地仓库
 ~~~~~~~~~~~~
 
-想访问这个仓库，最好的方式是你了解 `Git`_ , 不了解也没关系，有个软件可以
-基本傻瓜操作，这个软件叫 `Sourcetree`_ , 点击链接下载安装。
+想访问这个仓库，最好的方式是你了解 Git , 不了解也没关系，有个软件可以
+基本傻瓜操作，这个软件叫 Sourcetree_ , 点击链接下载安装。
 
 .. _Sourcetree: https://www.sourcetreeapp.com/
 
@@ -88,9 +83,9 @@ Subversion_, Bazaar_, Git_, 和 Mercurial_ 仓库拉取源文件，构建文档�
 
 .. image:: ../_static/Sphinx_RTD_Github/srctree1.png
 
-点击 :guilabel:`刷新 OAuth 令牌`, 会弹出一个网页，请求 GitHub_ 授权，这个授权我没
-截图，后面 `Read the Docs`_ 我截图了，你可以参考后面的图。 点击绿色的 :guilabel:`Authorize xxx`,
-这个 ``xxx`` 是应用的名字。 这样 GitHub_ 就授权你的 Sourcetree_ 访问它了。 认证成功，会显示。
+点击 :guilabel:`刷新 OAuth 令牌`, 会弹出一个网页，请求 GitHub 授权，这个授权我没
+截图，后面 Read the Docs 我截图了，你可以参考后面的图。 点击绿色的 :guilabel:`Authorize xxx`,
+这个 ``xxx`` 是应用的名字。 这样 GitHub 就授权你的 Sourcetree 访问它了。 认证成功，会显示。
 中间可能会要求输入用户名密码，这个我忘了。。。
 
 .. image:: ../_static/Sphinx_RTD_Github/srctree2.png
@@ -134,7 +129,7 @@ Subversion_, Bazaar_, Git_, 和 Mercurial_ 仓库拉取源文件，构建文档�
 创建项目
 ~~~~~~~~~
 
-接下来我们使用 Sphinx_ 来创建项目, 先看例子。
+接下来我们使用 Sphinx 来创建项目, 先看例子。
 
 .. code-block:: shell
 
@@ -218,7 +213,7 @@ Subversion_, Bazaar_, Git_, 和 Mercurial_ 仓库拉取源文件，构建文档�
 
    * 添加 ``master-doc`` , 指的是文档的入口，一般是目录页
    * 修改 ``exclude_patterns`` , 将 ``README.rst`` 添加到去除列表，这样不会编译它
-   * 修改 ``html_theme``, 使用 ReadTheDocs 的模板
+   * 修改 ``html_theme``, 使用 Read the Docs 的模板
 
 #. 添加 .gitignore 文件, 用于 Git 忽略某些文件或文件夹。
 

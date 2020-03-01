@@ -8,11 +8,6 @@ Conda 是为 Python 程序创建的，适用于 Linux，OS X 和 Windows，也�
 
 你可以使用 Conda 为不同的项目隔离开发环境，可以在不同的机器上重现开发环境。
 
-.. contents::
-   :depth: 3
-   :local:
-   :backlinks: none
-
 安装
 --------
 

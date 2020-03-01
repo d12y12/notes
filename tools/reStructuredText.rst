@@ -5,7 +5,7 @@ reStructuredText
 
 reStructuredText_ 是 Docutils_ 和 Sphinx_ 使用的默认纯文本标记语言。
 
-Docutils_ 提供基本的 reStructuredText_ 语法，而 Sphinx_ 则扩展此语法以支持其他功能。
+Docutils 提供基本的 reStructuredText 语法，而 Sphinx 则扩展此语法以支持其他功能。
 
 .. _reStructuredText: http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
 .. _Sphinx: http://www.sphinx-doc.org/
@@ -14,13 +14,6 @@ Docutils_ 提供基本的 reStructuredText_ 语法，而 Sphinx_ 则扩展此语
 .. hint::
 
    本文所有展示效果只在 HTML 输出
-
-.. contents::
-   :depth: 2
-   :local:
-   :backlinks: none
-
-
 
 标题和分隔线
 ------------
@@ -78,9 +71,9 @@ Docutils_ 提供基本的 reStructuredText_ 语法，而 Sphinx_ 则扩展此语
 段落
 ~~~~~
 
-段落是 reStructuredText_ 文档中最基础的部分，段落通过一个或者多个空行分隔开。左侧必须对齐(没有空格，或者有相同多的空格)。
+段落是 reStructuredText 文档中最基础的部分，段落通过一个或者多个空行分隔开。左侧必须对齐(没有空格，或者有相同多的空格)。
 
-普通的文本段落之间，还有块级元素之间，必须使用一个空行加以区分，否则会被 reStructuredText_ 折叠到上一行。
+普通的文本段落之间，还有块级元素之间，必须使用一个空行加以区分，否则会被 reStructuredText 折叠到上一行。
 
 段落引述，使用缩进即可。
 
@@ -465,7 +458,7 @@ Docutils_ 提供基本的 reStructuredText_ 语法，而 Sphinx_ 则扩展此语
 任务列表
 ~~~~~~~~
 
-reStructuredText_ 不支持生成带复选框的任务列表，但如下方式也能凑合看：
+reStructuredText 不支持生成带复选框的任务列表，但如下方式也能凑合看：
 
 - [ ] 吃饭
 - [x] 睡觉
@@ -992,7 +985,7 @@ CSV表格
 注脚
 ~~~~~
 
-Sphinx_ 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要有空格，
+Sphinx 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要有空格，
 然后在文尾使用 ``rubric`` 加入注脚段，这个段不会进入文档结构。
 
 :numref:`footnote_sphinx` :
