@@ -215,6 +215,14 @@ Git 命令
 写新的文档时创建一个基于 ``master`` 的分支，文档写完，把分支合并进 ``master``, 然后删除
 分支。 下面列举几种广泛使用并在实践中证明过的工作流，可以根据实际情况进行选择。
 
+.. note::
+
+   本章中部分文字和图片出自: 
+   
+   * `Git Flow Workflow <https://leanpub.com/git-flow/read>`_
+   * `廖雪峰的Git教程 <https://www.liaoxuefeng.com/wiki/896043488029600>`_
+   * `阮一峰的Git分支管理策略 <http://www.ruanyifeng.com/blog/2012/07/git.html>`_
+
 Git Flow
 ~~~~~~~~~
 
@@ -257,7 +265,7 @@ Git flow 使用一个中心仓库作为所有开发者的沟通中心。 开发�
   .. image:: ../_static/Git/git_flow_2.png
 
   * ``master`` : 用于存放对外发布的版本，标签永远打在 master 分支上。该分支是一个稳定分支，任何时刻都是可以发布的。
-  * ``develop``：作为一个集成分支，用于日常开发，存放最新的开发版。
+  * ``develop``：作为一个集成分支，用于日常开发，存放最新的开发版。 可以每天拉取此分支做 nightly build。
 
 * 支持分支
 
@@ -367,11 +375,17 @@ Windows 版的 Git 集成了 ``git flow`` 命令，可以使上面的命令简�
 
 这里的 ``start`` 和 ``finish`` 命令对应 git 命令中的开始和结束流程。 
 
+.. seealso::
+
+   更多 ``git flow`` 的例子参见 
+   `Using git-flow to automate your git branching workflow <https://jeffkreeftmeijer.com/git-flow/>`_
+
 GitHub Flow
 ~~~~~~~~~~~~~
 
 
-
+GitLab Flow
+~~~~~~~~~~~~~
 
 Git 服务器
 -----------
