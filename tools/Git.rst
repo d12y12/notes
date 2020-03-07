@@ -206,6 +206,7 @@ Git 命令
 ~~~~
 
 .. image:: ../_static/Git/git_cmd.png
+   :target: ../_static/Git/git_cmd.png
 
 工作流
 -------
@@ -230,6 +231,7 @@ Git flow 来自 Vincent Driessen 在2010年发表的分支管理策略
 `A successful Git branching model`_ 。 
 
 .. image:: ../_static/Git/git_flow_0.png
+   :target: ../_static/Git/git_flow_0.png
 
 有意思的是今年他又在他的帖子上增加了一个类似于 "10年回顾" 的东西：
 
@@ -368,6 +370,7 @@ Git flow 使用一个中心仓库作为所有开发者的沟通中心。 开发�
 下面这个图中总结了上面的命令：
 
 .. image:: ../_static/Git/git_flow_7.png
+   :target: ../_static/Git/git_flow_7.png
 
 Windows 版的 Git 集成了 ``git flow`` 命令，可以使上面的命令简单些
 
@@ -387,6 +390,7 @@ GitHub Flow
 GitLab Flow
 ~~~~~~~~~~~~~
 
+
 Git 服务器
 -----------
 
@@ -404,13 +408,19 @@ GitLab
 Git 客户端
 -----------
 
+Linux
+~~~~~~
+
+Windows
+~~~~~~~~~
+
 Sourcetree
------------
+~~~~~~~~~~~
 
 .. image:: ../_static/Git/sourcetree_logo.png
    :height: 100
 
 
 VSCode
---------
+~~~~~~~
 
