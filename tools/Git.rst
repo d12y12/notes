@@ -386,7 +386,7 @@ Windows 版的 Git 集成了 ``git flow`` 命令，可以使上面的命令简�
 GitHub Flow
 ~~~~~~~~~~~~~
 
-GitHub flow 是一个轻量级的，基于分支的工作流，用来支持持续部署的团队和项目。
+`GitHub Flow`_ 是一个轻量级的，基于分支的工作流，用来支持持续部署的团队和项目。
 
 .. image:: ../_static/Git/github_flow.png
 
@@ -408,14 +408,18 @@ GitHub flow 是一个轻量级的，基于分支的工作流，用来支持持�
    保留一份你的代码更改历史记录。 因为 ``PR`` 可以被搜索到， 任何人都可以明白当时
    的状况。 合并后，你的分支就可以被删除了。
 
+.. _`GitHub Flow`: https://guides.github.com/introduction/flow/index.html
+
 GitLab Flow
 ~~~~~~~~~~~~~
 
-GitHub flow 假设你每一次合并分支都可以部署生产。 对于 SaaS 服务，这是有可能的，但是对于很多
+GitHub Flow 假设你每一次合并分支都可以部署生产。 对于 SaaS 服务，这是有可能的，但是对于很多
 其他情况，却不行。 比如你无法控制确切的发布时间，像 iOS APP，需要 AppStore 检查。 或者你有部署
-窗口(比如工作日早10点到晚4点，运维团队马力全开)，但这时候你也需要合并代码。 GitLab flow 试图解决
-这些问题。
-下面介绍三种 GitLab 工作流：
+窗口(比如工作日早10点到晚4点，运维团队马力全开)，但这时候你也需要合并代码。 
+
+`GitLab Flow`_ 试图解决这些问题。下面介绍三种 GitLab 工作流：
+
+.. _`GitLab Flow`: https://docs.gitlab.com/ee/topics/gitlab_flow.html
 
 * 生产分支
   
