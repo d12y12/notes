@@ -460,16 +460,226 @@ GitHub Flow 假设你每一次合并分支都可以部署生产。 对于 SaaS �
 Git 服务器
 -----------
 
+自建 Git 服务器
+~~~~~~~~~~~~~~~
+
+我只用 GitLab 搭建过，等我单独用 git 搭的时候再说。。。
+
+GitLab
+~~~~~~~
+
+我是用 Docker 搭建过 GitLab ， 你可以参考我的 docker-compose.yml
+
+.. literalinclude:: ../_static/Git/docker-compose.yml
+   :linenos:
+   :emphasize-lines: 8, 11-12, 22-26, 33-40
+
+你需要根据你的情况修改
+
+* hostname： 你的主机名
+* external_url: 如果不使用 ssl 端口改为 30080，使用你的主机名和端口
+* gitlab_rails['gitlab_shell_ssh_port']： 你的ssh端口
+* ports： docker 对外映射的端口
+* volumes：存储映射
+
+如果你不需要 ssl ， 去掉 22-26，38 行。
+
+运行::
+
+   docker-compose up
+
 GitHub
 ~~~~~~~
 
 .. image:: ../_static/Git/github_logo.png
    :height: 100
 
-GitLab
-~~~~~~~
+GitHub 是最大的 Git 版本库托管商，是成千上万的开发者和项目能够合作进行的中心。 
+大部分 Git 版本库都托管在 GitHub，很多开源项目使用 GitHub 实现 Git 托管、
+问题追踪、代码审查以及其它事情。 
+
+常用配置
+########
+
+* 注册
+  
+  直接访问 https://github.com ， 选择一个未被占用的用户名，提供一个电子邮件地址和密码，
+  点击 :guilabel:`Sign up for GitHub` 即可。
+
+  .. image:: ../_static/Git/github_0.png
+
+* 简介
+
+  点击 :menuselection:`头像 --> Settings --> Profile` 
+
+  这里可以修改姓名，头像，公开邮件，自我介绍啊啥的。
+
+* 安全
+
+  点击 :menuselection:`头像 --> Settings --> Security`
+
+  可以修改密码， 如果要设置两步验证不要使用 SMS , 国内不支持。
+
+* 邮箱
+
+  点击 :menuselection:`头像 --> Settings --> Emails`
+
+  可以添加，修改，删除 GitHub 使用的邮箱。
+
+*  SSH
+
+   * 生成 SSH 密钥对
+     
+     在 Windows 下打开 ``git-bash``，在其他环境下打开终端
+
+     输入如下命令::
+
+        ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+     这里使用你在 GitHub 中设置的邮箱地址。
+
+     下面是我生成的例子。
+
+     .. code-block:: shell
+        :linenos:
+        :emphasize-lines: 4-6
+
+        yang@SkyLab-X1 MINGW64 /
+        $ ssh-keygen -t rsa -b 4096 -C d12y12@hotmail.com
+        Generating public/private rsa key pair.
+        Enter file in which to save the key (/c/Users/yang/.ssh/id_rsa):
+        Enter passphrase (empty for no passphrase):
+        Enter same passphrase again:
+        Your identification has been saved in /c/Users/yang/.ssh/id_rsa
+        Your public key has been saved in /c/Users/yang/.ssh/id_rsa.pub
+        ...
+     
+     解释一下：
+
+     * 第4行：询问密钥要存在哪，直接回车就行了。 默认存在用户的 ``~/.ssh/`` 目录
+     * 第5行：输入一个密码
+     * 第6行：再输一边，当然要和刚刚的一样。
+
+     这样你的密钥对就创建好了，其中
+
+     * id_rsa： 你的私钥
+     * id_rsa.pub： 公钥
+   
+   * 添加密钥到 ssh-agent
+     
+     如果你不想每次使用密钥都输入密码，你可以把密钥添加到 ``ssh-agent``, 它会管理你的
+     密钥和密码。
+
+     启动 ssh-agent::
+
+        $ eval $(ssh-agent -s)
+
+     添加 SSH 私钥::
+
+        $ ssh-add ~/.ssh/id_rsa
+
+     这样只有第一次使用密钥的时候需要输入密码，后面就不用了。
+     这里也还是有一个问题，就是你每次使用 ``git-bash`` 都要检查一下 ``ssh-agent`` 是不是
+     已经打开， 没打开就要手动打开一次。
+
+     你可以通过修改 ``~/.bashrc`` 来实现打开 ``git-bash`` 就自动启动 ssh-agent。
+
+     #. 检查一下你的 ``~/.bashrc``，如果没有就创建一个在 ``git-bash`` 中输入 ``cp /etc/bash.bashrc .bashrc``
+     #. 将下面内容复制粘贴到 ``~/.bashrc`` ::
+           
+           env=~/.ssh/agent.env
+
+           agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+
+           agent_start () {
+               (umask 077; ssh-agent >| "$env")
+               . "$env" >| /dev/null ; }
+
+           agent_load_env
+
+           # agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2= agent not running
+           agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
+
+           if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+              agent_start
+              ssh-add
+           elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
+              ssh-add
+           fi
+
+           unset env
+     
+     这样当你启动系统后第一次使用 ``git-bash`` 时，你需要输入一次密码::
+
+        > Initializing new SSH agent...
+        > succeeded
+        > Enter passphrase for /c/Users/you/.ssh/id_rsa:
+        > Identity added: /c/Users/you/.ssh/id_rsa (/c/Users/you/.ssh/id_rsa)
+        > Welcome to Git (version 1.6.0.2-preview20080923)
+        >
+        > Run 'git help git' to display the help index.
+        > Run 'git help ' to display help for specific commands.
+
+     之后 ``ssh-agent`` 进程会一直运行直到你登出，关机或者强制关闭这个进程。
+
+   * 添加公钥到你的 GitHub 账号
+
+     #. 复制你的公钥，随便找个文字编辑工具打开 ``id_rsa.pub``， 然后复制
+     #. 在 GitHub ， 点击 :menuselection:`头像 --> Settings --> SSH and GPG keys`
+     #. 点击 :guilabel:`New SSH key`
+     #. 给这个新密钥一个 ``Title``, 然后把你复制的密钥拷贝进 ``Key``
+
+        .. image:: ../_static/Git/github_1.png
+     
+     #. 点击 :guilabel:`Add SSH key` , 然后需要输入你的 GitHub 密码
+     #. 成功如下显示
+        
+        .. image:: ../_static/Git/github_2.png
+   
+   * 测试
+
+     使用如下命令::
+
+        ssh -T git@github.com
+
+     下面是我测试的例子，此处需要输入你创建密钥时的密码。
+
+     .. code-block:: shell
+        :linenos:
+
+        yang@SkyLab-X1 MINGW64 /
+        $ ssh -T git@github.com
+        The authenticity of host 'github.com (13.229.188.59)' can't be established.
+        RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+        Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+        Warning: Permanently added 'github.com,13.229.188.59' (RSA) to the list of known hosts.
+        Enter passphrase for key '/c/Users/yang/.ssh/id_rsa':
+        Hi d12y12! You've successfully authenticated, but GitHub does not provide shell access.
+     
+     到此为止，你就可以使用 ssh 来访问 GitHub 了。
 
 
+
+创建仓库
+########
+
+一般情况下，你登陆 GitHub 后，主页的左侧会显示你的仓库。
+
+.. image:: ../_static/Git/github_3.png
+
+可以直接点击 :guilabel:`new` 来创建新的仓库。 
+如果你找不到也可以点击 :menuselection:`头像 --> Your repositories` , 
+进入仓库页面点击 :guilabel:`new` 来创建新的仓库也可以。
+
+接下来，给你的仓库取个名字填进去
+
+.. image:: ../_static/Git/github_4.png
+
+如果你勤快的话，可以在 :guilabel:`Description` 里填一些关于项目的描述。
+
+这里你可以让 GitHub 替你创建 README , .gitignore 和 LICENSE 文件，也可以稍后添加。
+
+没问题就点击 :guilabel:`Create repository` 。
 
 Git 客户端
 -----------
@@ -477,8 +687,23 @@ Git 客户端
 Linux
 ~~~~~~
 
+一般 Ubuntu 自带，没带的话用下面的命令安装::
+
+   apt-get install git
+
 Windows
 ~~~~~~~~~
+
+可以下载 `安装版 <https://github.com/git-for-windows/git/releases/download/v2.25.1.windows.1/Git-2.25.1-64-bit.exe>`_ 
+或者 `便携版 <https://github.com/git-for-windows/git/releases/download/v2.25.1.windows.1/PortableGit-2.25.1-64-bit.7z.exe>`_ 
+
+安装版基本是傻瓜安装，你一步步下去就行了。 我用的是便携版，解压缩到一个目录就可以用。 
+
+如果在 PowerShell 或者 cmd 中使用, 需要加入系统路径，例如：
+
+.. image:: ../_static/Git/powersehll_git_0.png
+
+你可以根据自己的喜好使用 ``git bash`` 或者在 PowerShell 中使用 ``git``。
 
 Sourcetree
 ~~~~~~~~~~~
@@ -486,7 +711,74 @@ Sourcetree
 .. image:: ../_static/Git/sourcetree_logo.png
    :height: 100
 
+Sourcetree_ 是一个 Git 用户界面, 你可以在官网点击链接下载安装。
+
+.. _Sourcetree: https://www.sourcetreeapp.com/
+
+安装好之后，先换成中文，点击 :menuselection:`Tools --> Options -->General`, 在 
+:guilabel:`Repo Settings` 里找到 :guilabel:`Language` , 在下拉菜单中选 :guilabel:`汉语`， 
+然后重启你的 Sourcetree ，语言就变成中文了。
+
+.. image:: ../_static/Git/sourcetree_0.png
+
+你可以顺手在 :guilabel:`Project folder` 里设置一下本地仓库的默认存储文件夹。
+
+接下来，需要关联你的 GitHub 账号， 点击 :menuselection:`工具 --> 选项 --> 验证`。
+点击 :guilabel:`添加`, 然后按下图选择
+
+.. image:: ../_static/Git/sourcetree_1.png
+
+点击 :guilabel:`刷新 OAuth 令牌`, 会弹出一个网页，请求 GitHub 授权，这个授权我没
+截图，后面 Read the Docs 我截图了，你可以参考后面的图。 点击绿色的 :guilabel:`Authorize xxx`,
+这个 ``xxx`` 是应用的名字。 这样 GitHub 就授权你的 Sourcetree 访问它了。 认证成功，会显示。
+中间可能会要求输入用户名密码，这个我忘了。。。
+
+.. image:: ../_static/Git/sourcetree_2.png
+
+这里首选协议，我建议选 HTTPS ， 如果使用 SSH, Sourcetree 支持两种， openssl 和 putty agent，两种都有问题，
+openssl 要不停的输入密码， putty agent 的密钥和 GitHub 的 密钥不兼容。
+
+点击 :guilabel:`+` ，新建一个 :guilabel:`Tab`，点击 :guilabel:`Remote`
+
+.. image:: ../_static/Git/sourcetree_3.png
+
+选中你刚刚创建的仓库，点击 :guilabel:`Clone` ， 在新的 :guilabel:`Tab` 中看看你有没有要修改的地方，
+比如存储位置什么的，没有问题的话， 点击 :guilabel:`克隆`。
+
+.. image:: ../_static/Git/sourcetree_4.png
+
+这样你就有一个本地仓库了，点击 :guilabel:`Local`， 你就能看到它了，双击它，Sourcetree 
+会为你创建一个新的 :guilabel:`Tab` 来操作这个仓库。
+
+.. image:: ../_static/Git/sourcetree_5.png
 
 VSCode
 ~~~~~~~
 
+.. image:: ../_static/Git/vscode_logo.png
+   :height: 100
+
+要使用 VSCode 中的自带 Git 扩展，首先要在系统中安装并配置好 Git ,
+参见 `Windows`_ 。
+
+下面介绍一下如何配置
+
+:menuselection:`文件 --> 首选项 --> 设置`
+
+.. image:: ../_static/Git/vscode_git_0.png
+
+在 :guilabel:`搜索配置` 中输入 ``git path`` , 可以看到 :guilabel:`在setting.json中编辑`，
+点击打开 ``setting.json``, 并添加::
+
+   "git.path": "D:/tools/Git/bin/git.exe"
+
+别忘了把我的目录替换成你的。
+
+你可以在终端中输入 ``git status`` 试试。
+
+配置好后，点击下图中左侧绿框的 Git 图标， 你可以看到文件的变化，``U`` 带表没有追踪， ``M`` 代表已修改。
+点击右边绿框里的三个小点点，会弹出所有命令。
+
+.. image:: ../_static/Git/vscode_git_1.png
+
+你可以按照自己的喜好，使用终端或者 Git 扩展。
