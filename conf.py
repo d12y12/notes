@@ -18,12 +18,12 @@ source_suffix = {
 }
 
 master_doc = 'index'
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'README.rst']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'README.rst', 'tmp']
 templates_path = ['_templates']
 numfig = True
 numfig_format = {
     'figure': 'Figure %s', 
-    'table': 'Table %s',
+    'table': '表 %s',
     'code-block': '例 %s', 
     'section': 'Section %s'
     }

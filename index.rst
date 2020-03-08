@@ -12,7 +12,9 @@
 ----
 
 * 整理之前写过文档
+* 新弄的东西避免忘了
 * 搜索起来方便
+
 
 工具篇
 ------
@@ -24,12 +26,16 @@
 * **环境包管理**：
   :doc:`Conda <tools/Conda>`
 
+* **SCM**:
+  :doc:`Git <tools/Git>`
+
 .. toctree::
    :maxdepth: 3
    :hidden:
    :caption: 工具篇
 
    tools/Conda
+   tools/Git
    tools/markdown
    tools/reStructuredText
 
@@ -37,7 +43,8 @@
 ------
 
 * **写作**：
-  :doc:`Sphinx & ReadTheDocs & GitHub 集成写作环境 <tutorials/Sphinx_RTD_Github>`
+  :doc:`Sphinx & ReadTheDocs & GitHub 集成写作环境 <tutorials/Sphinx_RTD_Github>` | 
+
 
 .. toctree::
    :maxdepth: 3
