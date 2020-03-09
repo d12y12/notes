@@ -35,84 +35,20 @@ Subversion_, Bazaar_, Git_, 和 Mercurial_ 仓库拉取源文件，构建文档�
 创建 GitHub 仓库
 -----------------
 
-创建远程仓库
-~~~~~~~~~~~~
+* 创建远程仓库
 
-一般情况下，你登陆 GitHub 后，主页的左侧会显示你的仓库。
+  在 GitHub 上创建一个远程仓库， 如果不会，参考 :ref:`这里 <创建仓库>`
 
-.. image:: ../_static/Sphinx_RTD_Github/gh0.png
+* 创建本地仓库
 
-可以直接点击 :guilabel:`new` 来创建新的仓库。 
-如果你找不到也可以点击 :menuselection:`头像 --> Your repositories` , 
-进入仓库页面点击 :guilabel:`new` 来创建新的仓库也可以。
-
-接下来，给你的仓库取个名字填进去
-
-.. image:: ../_static/Sphinx_RTD_Github/gh1.png
-
-如果你勤快的话，可以在 :guilabel:`Description` 里填一些关于项目的描述。
-
-其他的我们稍后添加。
-
-没问题就点击 :guilabel:`Create repository` 。
-
-.. note::
-
-   这里你可以让 GitHub 替你创建 README , .gitignore 和 LICENSE 文件。
-   
-   我只是做一个纯文档项目，所以后面自己添加了。
-
-创建本地仓库
-~~~~~~~~~~~~
-
-想访问这个仓库，最好的方式是你了解 Git , 不了解也没关系，有个软件可以
-基本傻瓜操作，这个软件叫 Sourcetree_ , 点击链接下载安装。
-
-.. _Sourcetree: https://www.sourcetreeapp.com/
-
-安装好之后，先换成中文，点击 :menuselection:`Tools --> Options -->General`, 在 
-:guilabel:`Repo Settings` 里找到 :guilabel:`Language` , 在下拉菜单中选 :guilabel:`汉语`， 
-然后重启你的 Sourcetree ，语言就变成中文了。
-
-.. image:: ../_static/Sphinx_RTD_Github/srctree0.png
-
-你可以顺手在 :guilabel:`Project folder` 里设置一下本地仓库的默认存储文件夹。
-
-接下来，需要关联你的 GitHub 账号， 点击 :menuselection:`工具 --> 选项 --> 验证`。
-点击 :guilabel:`添加`, 然后按下图选择
-
-.. image:: ../_static/Sphinx_RTD_Github/srctree1.png
-
-点击 :guilabel:`刷新 OAuth 令牌`, 会弹出一个网页，请求 GitHub 授权，这个授权我没
-截图，后面 Read the Docs 我截图了，你可以参考后面的图。 点击绿色的 :guilabel:`Authorize xxx`,
-这个 ``xxx`` 是应用的名字。 这样 GitHub 就授权你的 Sourcetree 访问它了。 认证成功，会显示。
-中间可能会要求输入用户名密码，这个我忘了。。。
-
-.. image:: ../_static/Sphinx_RTD_Github/srctree2.png
-
-.. attention::
-
-   这里首选协议，我建议选 HTTPS ， 省事。
-
-点击 :guilabel:`+` ，新建一个 :guilabel:`Tab`，点击 :guilabel:`Remote`
-
-.. image:: ../_static/Sphinx_RTD_Github/srctree3.png
-
-选中你刚刚创建的仓库，点击 :guilabel:`Clone` ， 在新的 :guilabel:`Tab` 中看看你有没有要修改的地方，
-比如存储位置什么的，没有问题的话， 点击 :guilabel:`克隆`。
-
-.. image:: ../_static/Sphinx_RTD_Github/srctree4.png
-
-这样你就有一个本地仓库了，点击 :guilabel:`Local`， 你就能看到它了，双击它，Sourcetree 
-会为你创建一个新的 :guilabel:`Tab` 来操作这个仓库，目前为止，仓库空空如也。
-
-.. image:: ../_static/Sphinx_RTD_Github/srctree5.png
+  把你的远程仓库拉取到本地，你可以使用命令行，或者其他软件例如 Sourcetree，
+  参考 :ref:`这里 <Sourcetree>`
 
 创建 Sphinx 项目
 -----------------
 
-创建环境
-~~~~~~~~~
+创建 Python 环境
+~~~~~~~~~~~~~~~~
 
 首先使用 Conda 创建环境。
 
@@ -256,22 +192,7 @@ Subversion_, Bazaar_, Git_, 和 Mercurial_ 仓库拉取源文件，构建文档�
    building [mo]: targets for 0 po files that are out of date
    building [html]: targets for 0 source files that are out of date
    updating environment: 0 added, 1 changed, 0 removed
-   reading sources... [100%] tutorials/Sphinx_RTD_Github
-   looking for now-outdated files... none found
-   pickling environment... done
-   checking consistency... done
-   preparing documents... done
-   writing output... [100%] tutorials/contents
-   generating indices...  genindexdone
-   writing additional pages...  searchE:\conda\envs\doc\lib\site-packages\sphinx_rtd_theme\search.html:21: RemovedInSphinx30Warning: To modify script_files in the theme is deprecated. Please insert a <script> tag directly in your theme instead.
-   {% endblock %}
-   done
-   copying images... [100%] tutorials\../_static/Sphinx_RTD_Github/srctree3.png
-   copying downloadable files... [100%] _static/Conda/conda-cheatsheet.pdf
-   copying static files... ... done
-   copying extra files... done
-   dumping search index in Chinese (code: zh)... done
-   dumping object inventory... done
+   ...
    build succeeded.
 
    The HTML pages are in _build\html.
@@ -283,7 +204,7 @@ Subversion_, Bazaar_, Git_, 和 Mercurial_ 仓库拉取源文件，构建文档�
 
 创建 Read The Docs 项目，同时也是 Read The Docs 和 GitHub 集成的过程。
 
-创建项目
+导入项目
 ~~~~~~~~
 
 假设你已有 Read The docs 账户，登录之后，点击用户名旁边倒三角下拉菜单中的 
@@ -305,7 +226,7 @@ Subversion_, Bazaar_, Git_, 和 Mercurial_ 仓库拉取源文件，构建文档�
 在 GitHub 的 :menuselection:`Personal Setting --> Applications --> 
 Authorized OAuth Apps` 中可以查看你已授权的应用。
 
-.. image:: ../_static/Sphinx_RTD_Github/gh2.png
+.. image:: ../_static/Sphinx_RTD_Github/github_0.png
 
 授权成功后，你可以看到自己的项目列表
 
@@ -371,7 +292,7 @@ Webhook是一种 Web 回调 API ， 简单说就是可以在 GitHub 上注册一
 
   在 :guilabel:`项目页面` 点击 :menuselection:`Setting --> Webhooks`,
 
-  .. image:: ../_static/Sphinx_RTD_Github/gh3.png
+  .. image:: ../_static/Sphinx_RTD_Github/github_1.png
 
   点击 :guilabel:`Add webhook`, 然后填空：
 

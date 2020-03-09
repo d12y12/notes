@@ -7,6 +7,8 @@ Conda
    :height: 100
    :target: Conda_
 
+.. _Conda: https://conda.io/projects/conda/en/latest/
+
 |   
 
 Conda 是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，
@@ -356,7 +358,8 @@ Anaconda 创建的环境默认位置是 ``C:\Users\<USERNAME>\Anaconda3\envs`` �
 
 * 图形界面
   
-  在 :guilabel:`Environments` 中点击想要激活的环境， :menuselection:`三角形 --> Open Terminal`
+  在 :guilabel:`Environments` 中点击想要激活的环境， 
+  :menuselection:`三角形 --> Open Terminal`
   或者 :menuselection:`三角形 --> Open Python` 
 
 * 命令行
@@ -611,6 +614,8 @@ Anaconda 创建的环境默认位置是 ``C:\Users\<USERNAME>\Anaconda3\envs`` �
      
       本地下载 :download:`conda cheat sheet <../_static/Conda/conda-cheatsheet.pdf>`
 
+.. _`conda cheat sheet`: https://conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf
+
 Conda vs. pip vs. virtualenv 命令
 ----------------------------------
 
@@ -691,8 +696,6 @@ Conda vs. pip vs. virtualenv 命令
 .. [#f2] ``conda update python`` 适用于同个大版本的 Python 更新，比如 Python 2.x 更新到 Python 2.x 最新版本，
    或者 Python 3.x 更新到 Python 3.x 最新版本
 
-参考
-------
 
-#. `Conda <https://conda.io/projects/conda/en/latest/>`_
-#. `conda cheat sheet <https://conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf>`_
+
+
