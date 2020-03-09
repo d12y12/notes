@@ -18,6 +18,10 @@
 * **环境包管理**：
   `Conda <https://yang.readthedocs.io/zh_CN/latest/tools/Conda.html>`_ |
 
+* **版本管理**:
+  `Git <https://yang.readthedocs.io/zh_CN/latest/tools/Git.html>`_ |
+  `GitHub <https://yang.readthedocs.io/zh_CN/latest/tools/GitHub.html>`_
+
 教程篇
 ------
 
