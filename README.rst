@@ -22,6 +22,9 @@
   `Git <https://yang.readthedocs.io/zh_CN/latest/tools/Git.html>`_ |
   `GitHub <https://yang.readthedocs.io/zh_CN/latest/tools/GitHub.html>`_
 
+* **编辑工具**:
+  `VS Code <https://yang.readthedocs.io/zh_CN/latest/tools/VScode.html>`_
+
 教程篇
 ------
 

@@ -30,11 +30,8 @@
   :doc:`Git <tools/Git>` |
   :doc:`GitHub <tools/GitHub>`
 
-* **写作工具**:
-  Sphnix | Read the Docs | Pandoc
-
 * **编辑工具**:
-  VSCode
+  :doc:`Visual Studio Code <tools/VScode>`
 
 .. toctree::
    :maxdepth: 3
@@ -46,18 +43,13 @@
    tools/GitHub
    tools/markdown
    tools/reStructuredText
+   tools/VScode
 
 教程篇
 ------
 
 * **写作**：
   :doc:`Sphinx & ReadTheDocs & GitHub 集成写作环境 <tutorials/Sphinx_RTD_Github>` | 
-
-* **爬虫**:
-  Lego 搭建手册爬虫
-
-* **No title**:
-  使用Docker
 
 .. toctree::
    :maxdepth: 3
