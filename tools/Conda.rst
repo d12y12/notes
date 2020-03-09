@@ -17,8 +17,8 @@ Conda 是一个开源的软件包管理系统和环境管理系统，用于安�
 
 你可以使用 Conda 为不同的项目隔离开发环境，可以在不同的机器上重现开发环境。
 
-安装
---------
+Conda 安装
+----------
 
 Conda 分为两个大版本
 
@@ -80,8 +80,8 @@ Linux Miniconda
 
 还没装，装的时候再说。
 
-配置
---------
+Conda 配置
+----------
 
 PowerShell
 ~~~~~~~~~~~
@@ -240,8 +240,8 @@ Anaconda 创建的环境默认位置是 ``C:\Users\<USERNAME>\Anaconda3\envs`` �
    或者从命令行进入 ``E:\conda\envs`` 文件夹， 再使用 ``conda create --prefix <ENVNAME> python``
 
 
-使用
---------
+Conda 使用
+----------
 
 环境
 ~~~~~
@@ -591,7 +591,7 @@ Anaconda 创建的环境默认位置是 ``C:\Users\<USERNAME>\Anaconda3\envs`` �
      pip uninstall PACKAGENAME
 
 其他 Conda 命令
-----------------
+~~~~~~~~~~~~~~~
 
 * 升级
   
