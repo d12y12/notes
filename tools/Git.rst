@@ -3,15 +3,12 @@
 Git
 ====
 
-Git 命令
---------
-
 .. image:: ../_static/Git/git_logo.png
    :height: 100
    :target: https://git-scm.com
 
-速查表
-~~~~~~
+命令速查表
+----------
 
 +--------------------------------------------+-------------------------------+
 |                                            |                               |
@@ -202,8 +199,8 @@ Git 命令
 | ``git clean -f``                           | 执行 **清理**                 |
 +--------------------------------------------+-------------------------------+
 
-场景
-~~~~
+使用场景
+--------
 
 .. image:: ../_static/Git/git_cmd.png
    :target: ../_static/Git/git_cmd.png
@@ -460,13 +457,13 @@ GitHub Flow 假设你每一次合并分支都可以部署生产。 对于 SaaS �
 Git 服务器
 -----------
 
-自建 Git 服务器
+Git 原生服务器
 ~~~~~~~~~~~~~~~
 
 我只用 GitLab 搭建过，等我单独用 git 搭的时候再说。。。
 
-GitLab
-~~~~~~~
+GitLab CE 服务器
+~~~~~~~~~~~~~~~~
 
 我是用 Docker 搭建过 GitLab ， 你可以参考我的 docker-compose.yml
 
@@ -488,8 +485,8 @@ GitLab
 
    docker-compose up
 
-GitHub
-~~~~~~~
+GitHub 网站
+~~~~~~~~~~~
 
 GitHub 是最大的 Git 版本库托管商，是成千上万的开发者和项目能够合作进行的中心。 
 大部分 Git 版本库都托管在 GitHub，很多开源项目使用 GitHub 实现 Git 托管、
@@ -502,26 +499,27 @@ GitHub 是最大的 Git 版本库托管商，是成千上万的开发者和项�
 Git 客户端
 -----------
 
-Linux
+命令行
 ~~~~~~
 
-一般 Ubuntu 自带，没带的话用下面的命令安装::
+* Linux
 
-   apt-get install git
+  一般 Ubuntu 自带，没带的话用下面的命令安装::
 
-Windows
-~~~~~~~~~
+     apt-get install git
 
-可以下载 `安装版 <https://github.com/git-for-windows/git/releases/download/v2.25.1.windows.1/Git-2.25.1-64-bit.exe>`_ 
-或者 `便携版 <https://github.com/git-for-windows/git/releases/download/v2.25.1.windows.1/PortableGit-2.25.1-64-bit.7z.exe>`_ 
+* Windows
 
-安装版基本是傻瓜安装，你一步步下去就行了。 我用的是便携版，解压缩到一个目录就可以用。 
+  可以下载 `安装版 <https://github.com/git-for-windows/git/releases/download/v2.25.1.windows.1/Git-2.25.1-64-bit.exe>`_ 
+  或者 `便携版 <https://github.com/git-for-windows/git/releases/download/v2.25.1.windows.1/PortableGit-2.25.1-64-bit.7z.exe>`_ 
 
-如果在 PowerShell 或者 cmd 中使用, 需要加入系统路径，例如：
+  安装版基本是傻瓜安装，你一步步下去就行了。 我用的是便携版，解压缩到一个目录就可以用。 
 
-.. image:: ../_static/Git/powersehll_git_0.png
+  如果在 PowerShell 或者 cmd 中使用, 需要加入系统路径，例如：
 
-你可以根据自己的喜好使用 ``git bash`` 或者在 PowerShell 中使用 ``git``。
+  .. image:: ../_static/Git/powersehll_git_0.png
+
+  你可以根据自己的喜好使用 ``git bash`` 或者在 PowerShell 中使用 ``git``。
 
 Sourcetree
 ~~~~~~~~~~~
@@ -576,8 +574,7 @@ VSCode
 .. image:: ../_static/Git/vscode_logo.png
    :height: 100
 
-要使用 VSCode 中的自带 Git 扩展，首先要在系统中安装并配置好 Git ,
-参见 `Windows`_ 。
+要使用 VSCode 中的自带 Git 扩展，首先要在系统中安装并配置好 Git , 参见 `命令行`_ 。
 
 下面介绍一下如何配置
 

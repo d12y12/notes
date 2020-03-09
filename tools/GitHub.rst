@@ -5,6 +5,7 @@ GitHub
 
 .. image:: ../_static/GitHub/github_logo.png
    :height: 100
+   :target: https://github.com
 
 GitHub 是最大的 Git 版本库托管商，是成千上万的开发者和项目能够合作进行的中心。 
 大部分 Git 版本库都托管在 GitHub，很多开源项目使用 GitHub 实现 Git 托管、
@@ -93,10 +94,10 @@ SSH 配置
    这里也还是有一个问题，就是你每次使用 ``git-bash`` 都要检查一下 ``ssh-agent`` 是不是
    已经打开， 没打开就要手动打开一次。
 
-   你可以通过修改 ``~/.bashrc`` 来实现打开 ``git-bash`` 就自动启动 ssh-agent。
+   你可以通过修改 ``~/.bashrc`` 文件来实现打开 ``git-bash`` 就自动启动 ssh-agent。
 
-   *. 检查一下你的 ``~/.bashrc``，如果没有就创建一个在 ``git-bash`` 中输入 ``cp /etc/bash.bashrc .bashrc``
-   *. 将下面内容复制粘贴到 ``~/.bashrc`` ::
+   * 检查一下你的 ``~/.bashrc``，如果没有就创建一个在 ``git-bash`` 中输入 ``cp /etc/bash.bashrc .bashrc``
+   * 将下面内容复制粘贴到 ``~/.bashrc`` ::
            
          env=~/.ssh/agent.env
 
