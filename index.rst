@@ -30,6 +30,9 @@
   :doc:`Git <tools/Git>` |
   :doc:`GitHub <tools/GitHub>`
 
+* **容器**:
+  :doc:`Docker <tools/Docker>` |
+
 * **编辑工具**:
   :doc:`Visual Studio Code <tools/VScode>`
 
@@ -39,6 +42,7 @@
    :caption: 工具篇
 
    tools/Conda
+   tools/Docker
    tools/Git
    tools/GitHub
    tools/markdown
