@@ -260,7 +260,7 @@ Markdown 支持有序列表和无序列表。
 列表项目可以包含多个段落，每个项目下的段落都必须缩进4个空格或是1个制表符。
 例如：
 
-    1. 这个引用包含两个段落。
+    1. 这个列表包含两个段落。
 
         《早发白帝城》：
 
@@ -270,7 +270,7 @@ Markdown 支持有序列表和无序列表。
 
         床前明月光，疑是地上霜。举头望明月，低头思故乡。
 
-1. 这个引用包含两个段落。
+1. 这个列表包含两个段落。
 
     《早发白帝城》：
 
@@ -413,11 +413,11 @@ Markdown 使用一种和链接很相似的语法来标记图片，同样也允�
 
       ![本地图片](/_static/markdown/apple_logo.png)
 
-      ![网上图片](/_static/markdown/tesla_logo.jpg "Optional title")
+      ![网上图片](https://github.com/d12y12/notes/blob/master/_static/markdown/tesla_logo.jpg?raw=true "Optional title")
 
   ![本地图片](/_static/markdown/apple_logo.png)
 
-  ![网上图片](/_static/markdown/tesla_logo.jpg "Optional title")
+  ![网上图片](https://github.com/d12y12/notes/blob/master/_static/markdown/tesla_logo.jpg?raw=true "Optional title")
 
   > **注**： recommonmark 不支持 title 。
 

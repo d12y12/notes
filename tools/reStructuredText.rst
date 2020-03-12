@@ -1254,7 +1254,7 @@ Sphinx 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
       
       这是一个网络图片
 
-      .. image:: ../_static/reStructuredText/tesla_logo.jpg
+      .. image:: https://github.com/d12y12/notes/blob/master/_static/reStructuredText/tesla_logo.jpg?raw=true
          :alt: 网络图片
          :height: 200px
          :width: 200px
@@ -1277,7 +1277,7 @@ Sphinx 建议的使用方式是使用 ``[#name]_`` 来标记注脚，前后要�
 
      这是一个网络图片
 
-     .. image:: ../_static/reStructuredText/tesla_logo.jpg
+     .. image:: https://github.com/d12y12/notes/blob/master/_static/reStructuredText/tesla_logo.jpg?raw=true
         :alt: 网络图片
         :height: 200px
         :width: 200px
