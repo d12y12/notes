@@ -11,11 +11,11 @@
 工具篇
 -------
 
-* **标记语言**：
+* **标记语言**:
   `Markdown <https://yang.readthedocs.io/zh_CN/latest/tools/markdown.html>`_ |
   `reStructuredText <https://yang.readthedocs.io/zh_CN/latest/tools/reStructuredText.html>`_
 
-* **环境包管理**：
+* **环境包管理**:
   `Conda <https://yang.readthedocs.io/zh_CN/latest/tools/Conda.html>`_ |
 
 * **版本管理**:
@@ -34,7 +34,7 @@
 教程篇
 ------
 
-* **写作**：
+* **写作**:
   `Sphinx & ReadTheDocs & GitHub 集成写作环境 <https://yang.readthedocs.io/zh_CN/latest/tools/Sphinx_RTD_Github.html>`_ |
 
 * **杂记**:

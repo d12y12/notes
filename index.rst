@@ -19,11 +19,11 @@
 工具篇
 ------
 
-* **标记语言**：
+* **标记语言**:
   :doc:`Markdown <tools/markdown>` |
   :doc:`reStructuredText <tools/reStructuredText>`
 
-* **环境包管理**：
+* **环境包管理**:
   :doc:`Conda <tools/Conda>`
 
 * **版本管理**:
@@ -56,7 +56,7 @@
 教程篇
 ------
 
-* **写作**：
+* **写作**:
   :doc:`Sphinx & ReadTheDocs & GitHub 集成写作环境 <tutorials/Sphinx_RTD_Github>` | 
 
 * **杂记**:
