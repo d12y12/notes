@@ -112,6 +112,12 @@ VS Code 配置
 
    我们只针对写作工具更改了字体，不会影响终端，及其他代码编辑。
 
+   有兴趣使用 ``Fira Code`` 的， 下载 `最新版 <https://github.com/tonsky/FiraCode/releases>`_ ``Fira Coda``,
+   :menuselection:`命令面板 --> 输入: settings.json`, 打开用户配置文件，添加如下内容::
+
+      "editor.fontFamily": "'Fira Code'",
+      "editor.fontLigatures": true,
+
 缩进设置
 ~~~~~~~~~~
 
