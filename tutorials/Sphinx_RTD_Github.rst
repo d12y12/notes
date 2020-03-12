@@ -180,24 +180,37 @@ Subversion_, Bazaar_, Git_, 和 Mercurial_ 仓库拉取源文件，构建文档�
 使用 ``make <builder>`` 命令来生成输出， 常用的 <builder> 有
 ``html`` 和 ``latexpdf``。 
 
-例如要创建 HTML 输出，只需要运行 ``make html``, 
-下面是个例子(这个例子不是刚生成项目的时候)：
+* html 输出
 
-.. code-block:: shell
+  要创建 HTML 输出，只需要运行 ``make html``, 
+  下面是个例子(这个例子不是刚生成项目的时候)：
 
-   (doc) PS E:\Git\notes> make html
-   Running Sphinx v2.4.0
-   loading translations [zh_CN]... done
-   loading pickled environment... done
-   building [mo]: targets for 0 po files that are out of date
-   building [html]: targets for 0 source files that are out of date
-   updating environment: 0 added, 1 changed, 0 removed
-   ...
-   build succeeded.
+  .. code-block:: shell
 
-   The HTML pages are in _build\html.
+    (doc) PS E:\Git\notes> make html
+    Running Sphinx v2.4.0
+    loading translations [zh_CN]... done
+    loading pickled environment... done
+    building [mo]: targets for 0 po files that are out of date
+    building [html]: targets for 0 source files that are out of date
+    updating environment: 0 added, 1 changed, 0 removed
+    ...
+    build succeeded.
 
-你可以在浏览器打开 ``_build\html\index.html`` 来预览生成效果。
+    The HTML pages are in _build\html.
+
+  你可以在浏览器打开 ``_build\html\index.html`` 来预览生成效果。
+
+* pdf 输出
+ 
+  要创建 PDF 输出，只需要运行 ``make latexpdf``。
+  但在运行这个命令之前，先要装一些必要的库。
+
+  #. `下载TexLiv <http://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe>`_
+  #. 安装 ``TeX Live``，安装过程中要下很多库 3G 多，选一个国内的源，下载快点
+  #. 将 ``你的安装目录\texlive\2019\bin`` 加入到系统路径
+  #. ``TeX Live`` 自带一个小型 Perl 。 如果运行中，发现这 Perl 不够用，可以 
+     `下载activeperl <http://www.activestate.com/activeperl/downloads>`_, 然后一路安装就行了。
 
 创建 Read The Docs 项目
 ------------------------
