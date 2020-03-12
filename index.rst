@@ -55,9 +55,13 @@
 * **写作**：
   :doc:`Sphinx & ReadTheDocs & GitHub 集成写作环境 <tutorials/Sphinx_RTD_Github>` | 
 
+* **杂记**:
+  :doc:`Linux 杂记 <tutorials/Linux_Miscellaneous>`
+
 .. toctree::
    :maxdepth: 3
    :hidden:
    :caption: 教程篇
 
+   tutorials/Linux_Miscellaneous
    tutorials/Sphinx_RTD_Github
