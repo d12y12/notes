@@ -22,6 +22,12 @@
   `Git <https://yang.readthedocs.io/zh_CN/latest/tools/Git.html>`_ |
   `GitHub <https://yang.readthedocs.io/zh_CN/latest/tools/GitHub.html>`_
 
+* **容器**:
+  `Docker <https://yang.readthedocs.io/zh_CN/latest/tools/Docker.html>`_ 
+
+* **安全**:
+  `OpenSSL <https://yang.readthedocs.io/zh_CN/latest/tools/OpenSSL.html>`_
+
 * **编辑工具**:
   `VS Code <https://yang.readthedocs.io/zh_CN/latest/tools/VScode.html>`_
 
@@ -30,6 +36,9 @@
 
 * **写作**：
   `Sphinx & ReadTheDocs & GitHub 集成写作环境 <https://yang.readthedocs.io/zh_CN/latest/tools/Sphinx_RTD_Github.html>`_ |
+
+* **杂记**:
+  `Linux 杂记 <https://yang.readthedocs.io/zh_CN/latest/tools/Linux_Miscellaneous.html>`_
 
 全部笔记
 --------

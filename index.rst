@@ -33,6 +33,9 @@
 * **容器**:
   :doc:`Docker <tools/Docker>` |
 
+* **安全**:
+  :doc:`OpenSSL <tools/OpenSSL>` |
+
 * **编辑工具**:
   :doc:`Visual Studio Code <tools/VScode>`
 
@@ -46,6 +49,7 @@
    tools/Git
    tools/GitHub
    tools/markdown
+   tools/OpenSSL
    tools/reStructuredText
    tools/VScode
 
