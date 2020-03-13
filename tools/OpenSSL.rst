@@ -175,7 +175,7 @@ OpenSSL 是一个功能极其强大的命令行工具，可以用来完成公钥
             -CA ca.crt -CAkey ca.key \
             -req -days 365 -in server.csr -set_serial 01 -out server.crt
 
-关于在主机上创建一个证书颁发机构的方法，请参见`私有证书颁发机构`_。
+关于在主机上创建一个证书颁发机构的方法，请参见 `私有证书颁发机构`_ 。
 
 查看证书
 ---------
@@ -346,298 +346,298 @@ OpenSSL 中一些工具可用作证书颁发机构。
 
 #. 准备目录
 
-选择一个目录 (`/root/ca`) 来存储所有密钥和证书::
+   选择一个目录 (``/root/ca``) 来存储所有密钥和证书::
 
-   mkdir /root/ca
+      mkdir /root/ca
 
-创建目录结构::
+   创建目录结构::
 
-   cd /root/ca
-   mkdir certs crl newcerts private
-   chmod 700 private
-   touch index.txt
-   touch index.txt.attr
-   echo 1000 > serial
+      cd /root/ca
+      mkdir certs crl newcerts private
+      chmod 700 private
+      touch index.txt
+      touch index.txt.attr
+      echo 1000 > serial
 
-``index.txt`` 和 ``serial`` 文件充当扁平数据库文件，以跟踪签名证书。
+   ``index.txt`` 和 ``serial`` 文件充当扁平数据库文件，以跟踪签名证书。
 
 #. 准备配置文件
 
-您必须为 OpenSSL 创建配置文件才能使用。 
-下载`根CA配置文件 <https://github.com/d12y12/notes/blob/master/_static/OpenSSL/root_ca.conf>`_并复制到`/root/ca/openssl.cnf`。
+   您必须为 OpenSSL 创建配置文件才能使用。 
+   下载 `根CA配置文件 <https://github.com/d12y12/notes/blob/master/_static/OpenSSL/root_ca.conf>`_ 并复制到 ``/root/ca/openssl.cnf``。
 
-下面分部分介绍一下配置文件。
+   下面分部分介绍一下配置文件。
 
-* ``[ca]`` 
+   * ``[ca]`` 
 
-  这部分是强制性的。 在这里，我们告诉OpenSSL使用 ``[CA_default]`` 部分中的选项::
+      这部分是强制性的。 在这里，我们告诉OpenSSL使用 ``[CA_default]`` 部分中的选项::
 
-     [ ca ]
-     # `man ca`
-     default_ca = CA_default
+         [ ca ]
+         # `man ca`
+         default_ca = CA_default
 
-* ``[CA_default]``
+   * ``[CA_default]``
 
-  这部分包含一系列默认值。 确保声明之前选择的目录 (``/root/ca``) ::
+      这部分包含一系列默认值。 确保声明之前选择的目录 (``/root/ca``) ::
 
-     [ CA_default ]
-     # Directory and file locations.
-     dir               = /root/ca
-     certs             = $dir/certs
-     crl_dir           = $dir/crl
-     new_certs_dir     = $dir/newcerts
-     database          = $dir/index.txt
-     serial            = $dir/serial
-     RANDFILE          = $dir/private/.rand
+         [ CA_default ]
+         # Directory and file locations.
+         dir               = /root/ca
+         certs             = $dir/certs
+         crl_dir           = $dir/crl
+         new_certs_dir     = $dir/newcerts
+         database          = $dir/index.txt
+         serial            = $dir/serial
+         RANDFILE          = $dir/private/.rand
 
-     # The root key and root certificate.
-     private_key       = $dir/private/ca.key.pem
-     certificate       = $dir/certs/ca.cert.pem
+         # The root key and root certificate.
+         private_key       = $dir/private/ca.key.pem
+         certificate       = $dir/certs/ca.cert.pem
 
-     # For certificate revocation lists.
-     crlnumber         = $dir/crlnumber
-     crl               = $dir/crl/ca.crl.pem
-     crl_extensions    = crl_ext
-     default_crl_days  = 30
+         # For certificate revocation lists.
+         crlnumber         = $dir/crlnumber
+         crl               = $dir/crl/ca.crl.pem
+         crl_extensions    = crl_ext
+         default_crl_days  = 30
 
-     # SHA-1 is deprecated, so use SHA-2 instead.
-     default_md        = sha256
+         # SHA-1 is deprecated, so use SHA-2 instead.
+         default_md        = sha256
 
-     name_opt          = ca_default
-     cert_opt          = ca_default
-     default_days      = 375
-     preserve          = no
-     policy            = policy_strict
+         name_opt          = ca_default
+         cert_opt          = ca_default
+         default_days      = 375
+         preserve          = no
+         policy            = policy_strict
 
-* ``[ policy_strict ]``
+   * ``[ policy_strict ]``
 
-  我们将对所有根CA签名应用 ``policy_strict`` ，因为根CA仅用于创建中间CA::
+      我们将对所有根CA签名应用 ``policy_strict`` ，因为根CA仅用于创建中间CA::
 
-     [ policy_strict ]
-     # The root CA should only sign intermediate certificates that match.
-     # See the POLICY FORMAT section of `man ca`.
-     countryName             = match
-     stateOrProvinceName     = match
-     organizationName        = match
-     organizationalUnitName  = optional
-     commonName              = supplied
-     emailAddress            = optional
+         [ policy_strict ]
+         # The root CA should only sign intermediate certificates that match.
+         # See the POLICY FORMAT section of `man ca`.
+         countryName             = match
+         stateOrProvinceName     = match
+         organizationName        = match
+         organizationalUnitName  = optional
+         commonName              = supplied
+         emailAddress            = optional
 
-* ``[ policy_loose ]``
+   * ``[ policy_loose ]``
 
-  我们将对所有中间CA签名应用 ``policy_loose`` ，因为中间CA用于签署来自各种第三方的服务器和客户端证书::
+      我们将对所有中间CA签名应用 ``policy_loose`` ，因为中间CA用于签署来自各种第三方的服务器和客户端证书::
 
-     [ policy_loose ]
-     # Allow the intermediate CA to sign a more diverse range of certificates.
-     # See the POLICY FORMAT section of the `ca` man page.
-     countryName             = optional
-     stateOrProvinceName     = optional
-     localityName            = optional
-     organizationName        = optional
-     organizationalUnitName  = optional
-     commonName              = supplied
-     emailAddress            = optional
+         [ policy_loose ]
+         # Allow the intermediate CA to sign a more diverse range of certificates.
+         # See the POLICY FORMAT section of the `ca` man page.
+         countryName             = optional
+         stateOrProvinceName     = optional
+         localityName            = optional
+         organizationName        = optional
+         organizationalUnitName  = optional
+         commonName              = supplied
+         emailAddress            = optional
 
-* ``[ req ]``
+   * ``[ req ]``
 
-  创建证书或证书签名请求时，将应用 ``[req]`` 部分中的选项::
+      创建证书或证书签名请求时，将应用 ``[req]`` 部分中的选项::
 
-     [ req ]
-     # Options for the `req` tool (`man req`).
-     default_bits        = 2048
-     distinguished_name  = req_distinguished_name
-     string_mask         = utf8only
+         [ req ]
+         # Options for the `req` tool (`man req`).
+         default_bits        = 2048
+         distinguished_name  = req_distinguished_name
+         string_mask         = utf8only
 
-     # SHA-1 is deprecated, so use SHA-2 instead.
-     default_md          = sha256
+         # SHA-1 is deprecated, so use SHA-2 instead.
+         default_md          = sha256
 
-     # Extension to add when the -x509 option is used.
-     x509_extensions     = v3_ca
+         # Extension to add when the -x509 option is used.
+         x509_extensions     = v3_ca
 
-* ``[ req_distinguished_name ]``
+   * ``[ req_distinguished_name ]``
 
-  这部分声明证书签名请求中通常需要的信息。 您可以选择指定一些默认值::
+      这部分声明证书签名请求中通常需要的信息。 您可以选择指定一些默认值::
 
-     [ req_distinguished_name ]
-     # See <https://en.wikipedia.org/wiki/Certificate_signing_request>.
-     countryName                     = Country Name (2 letter code)
-     stateOrProvinceName             = State or Province Name
-     localityName                    = Locality Name
-     0.organizationName              = Organization Name
-     organizationalUnitName          = Organizational Unit Name
-     commonName                      = Common Name
-     emailAddress                    = Email Address
+         [ req_distinguished_name ]
+         # See <https://en.wikipedia.org/wiki/Certificate_signing_request>.
+         countryName                     = Country Name (2 letter code)
+         stateOrProvinceName             = State or Province Name
+         localityName                    = Locality Name
+         0.organizationName              = Organization Name
+         organizationalUnitName          = Organizational Unit Name
+         commonName                      = Common Name
+         emailAddress                    = Email Address
 
-     # Optionally, specify some defaults.
-     countryName_default             = GN
-     stateOrProvinceName_default     = Guangdong
-     localityName_default            = Shenzhen
-     0.organizationName_default      = Yang Ltd
-     #organizationalUnitName_default =
-     #emailAddress_default           =
+         # Optionally, specify some defaults.
+         countryName_default             = GN
+         stateOrProvinceName_default     = Guangdong
+         localityName_default            = Shenzhen
+         0.organizationName_default      = Yang Ltd
+         #organizationalUnitName_default =
+         #emailAddress_default           =
 
-接下来的几部分是签名证书时可以应用的扩展。 
-例如，传递 ``-extensions v3_ca`` 命令行参数将应用 ``[v3_ca]`` 中设置的选项。
+      接下来的几部分是签名证书时可以应用的扩展。 
+      例如，传递 ``-extensions v3_ca`` 命令行参数将应用 ``[v3_ca]`` 中设置的选项。
 
-* ``[ v3_ca ]``
+   * ``[ v3_ca ]``
 
-  在创建根证书时应用 ``v3_ca`` 扩展::
+      在创建根证书时应用 ``v3_ca`` 扩展::
 
-     [ v3_ca ]
-     # Extensions for a typical CA (`man x509v3_config`).
-     subjectKeyIdentifier = hash
-     authorityKeyIdentifier = keyid:always,issuer
-     basicConstraints = critical, CA:true
-     keyUsage = critical, digitalSignature, cRLSign, keyCertSign
+         [ v3_ca ]
+         # Extensions for a typical CA (`man x509v3_config`).
+         subjectKeyIdentifier = hash
+         authorityKeyIdentifier = keyid:always,issuer
+         basicConstraints = critical, CA:true
+         keyUsage = critical, digitalSignature, cRLSign, keyCertSign
 
-* ``[ v3_intermediate_ca ]``
+   * ``[ v3_intermediate_ca ]``
 
-  在创建中间证书时应用 ``v3_ca_intermediate`` 扩展::
+      在创建中间证书时应用 ``v3_ca_intermediate`` 扩展::
 
-     [ v3_intermediate_ca ]
-     # Extensions for a typical intermediate CA (`man x509v3_config`).
-     subjectKeyIdentifier = hash
-     authorityKeyIdentifier = keyid:always,issuer
-     basicConstraints = critical, CA:true, pathlen:0
-     keyUsage = critical, digitalSignature, cRLSign, keyCertSign
+         [ v3_intermediate_ca ]
+         # Extensions for a typical intermediate CA (`man x509v3_config`).
+         subjectKeyIdentifier = hash
+         authorityKeyIdentifier = keyid:always,issuer
+         basicConstraints = critical, CA:true, pathlen:0
+         keyUsage = critical, digitalSignature, cRLSign, keyCertSign
 
-  * ``pathlen：0``: 确保中间CA下方不再有其他证书颁发机构
+      * ``pathlen：0``: 确保中间CA下方不再有其他证书颁发机构
 
-* ``[ usr_cert ]``
+   * ``[ usr_cert ]``
 
-  在签署客户端证书(例如用于远程用户身份验证的证书)时应用 ``usr_cert`` 扩展::
+      在签署客户端证书(例如用于远程用户身份验证的证书)时应用 ``usr_cert`` 扩展::
 
-     [ usr_cert ]
-     # Extensions for client certificates (`man x509v3_config`).
-     basicConstraints = CA:FALSE
-     nsCertType = client, email
-     nsComment = "OpenSSL Generated Client Certificate"
-     subjectKeyIdentifier = hash
-     authorityKeyIdentifier = keyid,issuer
-     keyUsage = critical, nonRepudiation, digitalSignature, keyEncipherment
-     extendedKeyUsage = clientAuth, emailProtection
+         [ usr_cert ]
+         # Extensions for client certificates (`man x509v3_config`).
+         basicConstraints = CA:FALSE
+         nsCertType = client, email
+         nsComment = "OpenSSL Generated Client Certificate"
+         subjectKeyIdentifier = hash
+         authorityKeyIdentifier = keyid,issuer
+         keyUsage = critical, nonRepudiation, digitalSignature, keyEncipherment
+         extendedKeyUsage = clientAuth, emailProtection
 
-* ``[ server_cert ]``
+   * ``[ server_cert ]``
 
-  在签署服务器证书(例如用于Web服务器的证书)时应用 ``server_cert`` 扩展::
+      在签署服务器证书(例如用于Web服务器的证书)时应用 ``server_cert`` 扩展::
 
-     [ server_cert ]
-     # Extensions for server certificates (`man x509v3_config`).
-     basicConstraints = CA:FALSE
-     nsCertType = server
-     nsComment = "OpenSSL Generated Server Certificate"
-     subjectKeyIdentifier = hash
-     authorityKeyIdentifier = keyid,issuer:always
-     keyUsage = critical, digitalSignature, keyEncipherment
-     extendedKeyUsage = serverAuth
+         [ server_cert ]
+         # Extensions for server certificates (`man x509v3_config`).
+         basicConstraints = CA:FALSE
+         nsCertType = server
+         nsComment = "OpenSSL Generated Server Certificate"
+         subjectKeyIdentifier = hash
+         authorityKeyIdentifier = keyid,issuer:always
+         keyUsage = critical, digitalSignature, keyEncipherment
+         extendedKeyUsage = serverAuth
 
-* ``[ crl_ext ]``
+   * ``[ crl_ext ]``
 
-  在创建证书吊销列表时会自动应用 ``crl_ext`` 扩展::
+      在创建证书吊销列表时会自动应用 ``crl_ext`` 扩展::
 
-     [ crl_ext ]
-     # Extension for CRLs (`man x509v3_config`).
-     authorityKeyIdentifier=keyid:always
+         [ crl_ext ]
+         # Extension for CRLs (`man x509v3_config`).
+         authorityKeyIdentifier=keyid:always
 
-* ``[ ocsp ]``
+   * ``[ ocsp ]``
 
-  在签署在线证书状态协议 (OCSP) 证书时应用 ``ocsp`` 扩展::
+      在签署在线证书状态协议 (OCSP) 证书时应用 ``ocsp`` 扩展::
 
-     [ ocsp ]
-     # Extension for OCSP signing certificates (`man ocsp`).
-     basicConstraints = CA:FALSE
-     subjectKeyIdentifier = hash
-     authorityKeyIdentifier = keyid,issuer
-     keyUsage = critical, digitalSignature
-     extendedKeyUsage = critical, OCSPSigning
+         [ ocsp ]
+         # Extension for OCSP signing certificates (`man ocsp`).
+         basicConstraints = CA:FALSE
+         subjectKeyIdentifier = hash
+         authorityKeyIdentifier = keyid,issuer
+         keyUsage = critical, digitalSignature
+         extendedKeyUsage = critical, OCSPSigning
 
 #. 创建根密钥
 
-创建根密钥 (ca.key.pem) 并保证绝对安全, 因为拥有根密钥的任何人都可以颁发受信任的证书。 
-使用 ``AES 256`` 加密和强密码加密根密钥::
+   创建根密钥 (ca.key.pem) 并保证绝对安全, 因为拥有根密钥的任何人都可以颁发受信任的证书。 
+   使用 ``AES 256`` 加密和强密码加密根密钥::
 
-   cd /root/ca
-   openssl genrsa -aes256 -out private/ca.key.pem 4096
+      cd /root/ca
+      openssl genrsa -aes256 -out private/ca.key.pem 4096
 
-   Enter pass phrase for ca.key.pem: secretpassword
-   Verifying - Enter pass phrase for ca.key.pem: secretpassword
+      Enter pass phrase for ca.key.pem: secretpassword
+      Verifying - Enter pass phrase for ca.key.pem: secretpassword
 
-   chmod 400 private/ca.key.pem
+      chmod 400 private/ca.key.pem
 
-.. attention::
+   .. attention::
 
-   对所有根证书和中间证书颁发机构密钥使用4096位。 您仍然可以签署更短的服务器和客户端证书。
+      对所有根证书和中间证书颁发机构密钥使用4096位。 您仍然可以签署更短的服务器和客户端证书。
 
 #. 创建根证书
 
-使用根密钥 (ca.key.pem) 创建根证书 (ca.cert.pem)::
+   使用根密钥 (ca.key.pem) 创建根证书 (ca.cert.pem)::
 
-   cd /root/ca
-   openssl req -config openssl.cnf \
-          -key private/ca.key.pem \
-          -new -x509 -days 7300 -sha256 -extensions v3_ca \
-          -out certs/ca.cert.pem
+      cd /root/ca
+      openssl req -config openssl.cnf \
+             -key private/ca.key.pem \
+             -new -x509 -days 7300 -sha256 -extensions v3_ca \
+             -out certs/ca.cert.pem
 
-   Enter pass phrase for ca.key.pem: secretpassword
-   You are about to be asked to enter information that will be incorporated
-   into your certificate request.
-   \-----
-   Country Name (2 letter code) [CN]:CN
-   State or Province Name [Guangdong]:Guangdong
-   Locality Name [Shenzhen]:Shenzhen
-   Organization Name [Yang Ltd]:Yang Ltd
-   Organizational Unit Name []:Yang Ltd Certificate Authority
-   Common Name []:Yang Ltd Root CA
-   Email Address []:
+      Enter pass phrase for ca.key.pem: secretpassword
+      You are about to be asked to enter information that will be incorporated
+      into your certificate request.
+      \-----
+      Country Name (2 letter code) [CN]:CN
+      State or Province Name [Guangdong]:Guangdong
+      Locality Name [Shenzhen]:Shenzhen
+      Organization Name [Yang Ltd]:Yang Ltd
+      Organizational Unit Name []:Yang Ltd Certificate Authority
+      Common Name []:Yang Ltd Root CA
+      Email Address []:
 
-   chmod 444 certs/ca.cert.pem
+      chmod 444 certs/ca.cert.pem
 
-给根证书一个很长的失效日期，例如二十年。 根证书过期后，CA签名的所有证书都将失效。
+   给根证书一个很长的失效日期，例如二十年。 根证书过期后，CA签名的所有证书都将失效。
 
-.. warning::
+   .. warning::
 
-   无论何时使用 ``req`` 工具，都必须指定要与 ``-config`` 选项一起使用的配置文件，
-   否则 OpenSSL 将默认为 ``/etc/pki/tls/openssl.cnf``。
+      无论何时使用 ``req`` 工具，都必须指定要与 ``-config`` 选项一起使用的配置文件，
+      否则 OpenSSL 将默认为 ``/etc/pki/tls/openssl.cnf``。
 
 #. 验证根证书
 
-使用命令::
+   使用命令::
 
-   openssl x509 -noout -text -in certs/ca.cert.pem
+      openssl x509 -noout -text -in certs/ca.cert.pem
 
-输出显示:
+   输出显示:
 
-* 使用的签名算法
-* 证书的有效期
-* 公钥长度
-* 发行人，即签署证书的实体
-* 主题，指证书本身
-* 扩展
+   * 使用的签名算法
+   * 证书的有效期
+   * 公钥长度
+   * 发行人，即签署证书的实体
+   * 主题，指证书本身
+   * 扩展
 
-颁发者和主题相同，因为证书是自签名的。 请注意，所有根证书都是自签名的::
+   颁发者和主题相同，因为证书是自签名的。 请注意，所有根证书都是自签名的::
 
-   Signature Algorithm: sha256WithRSAEncryption
-   Issuer: C = CN, ST = Guangdong, L = Shenzhen, O = Yang Ltd, OU = Yang Ltd Certificate Authority, CN = Yang Ltd Root CA
-   Validity
-      Not Before: Jul  4 08:44:04 2019 GMT
-      Not After : Jun 29 08:44:04 2039 GMT
-   Subject: C = CN, ST = Guangdong, L = Shenzhen, O = Yang Ltd, OU = Yang Ltd Certificate Authority, CN = Yang Ltd Root CA
-   Subject Public Key Info:
-      Public Key Algorithm: rsaEncryption
-         RSA Public-Key: (4096 bit)
+      Signature Algorithm: sha256WithRSAEncryption
+      Issuer: C = CN, ST = Guangdong, L = Shenzhen, O = Yang Ltd, OU = Yang Ltd Certificate Authority, CN = Yang Ltd Root CA
+      Validity
+         Not Before: Jul  4 08:44:04 2019 GMT
+         Not After : Jun 29 08:44:04 2039 GMT
+      Subject: C = CN, ST = Guangdong, L = Shenzhen, O = Yang Ltd, OU = Yang Ltd Certificate Authority, CN = Yang Ltd Root CA
+      Subject Public Key Info:
+         Public Key Algorithm: rsaEncryption
+            RSA Public-Key: (4096 bit)
 
-输出还显示X509v3扩展。 我们应用了v3_ca扩展，因此[v3_ca]中的选项应该反映在输出中::
+   输出还显示X509v3扩展。 我们应用了v3_ca扩展，因此[v3_ca]中的选项应该反映在输出中::
 
-   X509v3 extensions:
-      X509v3 Subject Key Identifier:
-         6A:F6:94:92:65:96:F9:01:92:79:F7:0D:7C:A6:91:DC:EB:1B:38:37
-      X509v3 Authority Key Identifier:
-         keyid:6A:F6:94:92:65:96:F9:01:92:79:F7:0D:7C:A6:91:DC:EB:1B:38:37
-      
-      X509v3 Basic Constraints: critical
-         CA:TRUE
-      X509v3 Key Usage: critical
-         Digital Signature, Certificate Sign, CRL Sign   
+      X509v3 extensions:
+         X509v3 Subject Key Identifier:
+            6A:F6:94:92:65:96:F9:01:92:79:F7:0D:7C:A6:91:DC:EB:1B:38:37
+         X509v3 Authority Key Identifier:
+            keyid:6A:F6:94:92:65:96:F9:01:92:79:F7:0D:7C:A6:91:DC:EB:1B:38:37
+         
+         X509v3 Basic Constraints: critical
+            CA:TRUE
+         X509v3 Key Usage: critical
+            Digital Signature, Certificate Sign, CRL Sign   
 
 创建中间对
 ~~~~~~~~~~~
@@ -648,133 +648,131 @@ OpenSSL 中一些工具可用作证书颁发机构。
 
 #. 准备目录
 
-根CA文件保存在 ``/root/ca`` 中。 
-选择其他目录 (``/root/ca/intermediate``) 来存储中间CA文件::
+   根CA文件保存在 ``/root/ca`` 中。 
+   选择其他目录 (``/root/ca/intermediate``) 来存储中间CA文件::
 
-   mkdir /root/ca/intermediate
+      mkdir /root/ca/intermediate
 
-创建与根CA文件相同的目录结构。 创建一个 ``csr`` 目录来保存证书签名请求::
+   创建与根CA文件相同的目录结构。 创建一个 ``csr`` 目录来保存证书签名请求::
 
-   cd /root/ca/intermediate
-   mkdir certs crl csr newcerts private
-   chmod 700 private
-   touch index.txt
-   touch index.txt.attr
-   echo 1000 > serial
-   echo 1000 > /root/ca/intermediate/crlnumber
+      cd /root/ca/intermediate
+      mkdir certs crl csr newcerts private
+      chmod 700 private
+      touch index.txt
+      touch index.txt.attr
+      echo 1000 > serial
+      echo 1000 > /root/ca/intermediate/crlnumber
 
-* ``crlnumber``: 用于跟踪证书吊销列表
+   * ``crlnumber``: 用于跟踪证书吊销列表
 
-下载`中间CA配置文件 <https://github.com/d12y12/notes/blob/master/_static/OpenSSL/intermediate_ca.conf>`_
-并复制到 ``/root/ca/intermediate/openssl.cnf``。
+   下载 `中间CA配置文件 <https://github.com/d12y12/notes/blob/master/_static/OpenSSL/intermediate_ca.conf>`_
+   并复制到 ``/root/ca/intermediate/openssl.cnf``。
 
-与根CA配置文件相比，有五个选项已更改::
+   与根CA配置文件相比，有五个选项已更改::
 
-   [ CA_default ]
-   dir             = /root/ca/intermediate
-   private_key     = $dir/private/intermediate.key.pem
-   certificate     = $dir/certs/intermediate.cert.pem
-   crl             = $dir/crl/intermediate.crl.pem
-   policy          = policy_loose
+      [ CA_default ]
+      dir             = /root/ca/intermediate
+      private_key     = $dir/private/intermediate.key.pem
+      certificate     = $dir/certs/intermediate.cert.pem
+      crl             = $dir/crl/intermediate.crl.pem
+      policy          = policy_loose
 
 #. 创建中间密钥
 
-创建中间密钥 (intermediate.key.pem)。 
-使用 ``AES 256`` 加密和强密码加密中间密钥::
+   创建中间密钥 (intermediate.key.pem)。 
+   使用 ``AES 256`` 加密和强密码加密中间密钥::
 
-   cd /root/ca
-   openssl genrsa -aes256 \
-         -out intermediate/private/intermediate.key.pem 4096
+      cd /root/ca
+      openssl genrsa -aes256 \
+             -out intermediate/private/intermediate.key.pem 4096
 
-   Enter pass phrase for intermediate.key.pem: secretpassword
-   Verifying - Enter pass phrase for intermediate.key.pem: secretpassword
+      Enter pass phrase for intermediate.key.pem: secretpassword
+      Verifying - Enter pass phrase for intermediate.key.pem: secretpassword
 
-   chmod 400 intermediate/private/intermediate.key.pem
+      chmod 400 intermediate/private/intermediate.key.pem
 
 #. 创建中间证书
 
-使用中间密钥创建证书签名请求 (CSR) ::
+   使用中间密钥创建证书签名请求 (CSR) ::
 
-   cd /root/ca
-   openssl req -config intermediate/openssl.cnf -new -sha256 \
-         -key intermediate/private/intermediate.key.pem \
-         -out intermediate/csr/intermediate.csr.pem
+      cd /root/ca
+      openssl req -config intermediate/openssl.cnf -new -sha256 \
+            -key intermediate/private/intermediate.key.pem \
+            -out intermediate/csr/intermediate.csr.pem
 
-   Enter pass phrase for intermediate.key.pem: secretpassword
-   You are about to be asked to enter information that will be incorporated
-   into your certificate request.
-   \-----
-   Country Name (2 letter code) [CN]:CN
-   State or Province Name [Guangdong]:Guangdong
-   Locality Name [Shenzhen]:Shenzhen
-   Organization Name [Yang Ltd]:Yang Ltd
-   Organizational Unit Name []:Yang Ltd Certificate Authority
-   Common Name []:Yang Ltd Intermediate CA
-   Email Address []:
+      Enter pass phrase for intermediate.key.pem: secretpassword
+      You are about to be asked to enter information that will be incorporated
+      into your certificate request.
+      \-----
+      Country Name (2 letter code) [CN]:CN
+      State or Province Name [Guangdong]:Guangdong
+      Locality Name [Shenzhen]:Shenzhen
+      Organization Name [Yang Ltd]:Yang Ltd
+      Organizational Unit Name []:Yang Ltd Certificate Authority
+      Common Name []:Yang Ltd Intermediate CA
+      Email Address []:
 
-标识信息通常应与根CA匹配, 但是 **通用名称 (Common Name)** 必须不同。
+   标识信息通常应与根CA匹配, 但是 **通用名称 (Common Name)** 必须不同。
 
-.. attention::
+   .. attention::
 
-   确保指定中间CA配置文件 ``intermediate/openssl.cnf``。
+      确保指定中间CA配置文件 ``intermediate/openssl.cnf``。
 
-使用带有v3_intermediate_ca扩展名的根CA来签署中间CSR::
+   使用带有 ``v3_intermediate_ca`` 扩展名的根CA来签署中间CSR::
 
-   cd /root/ca
-   openssl ca -config openssl.cnf -extensions v3_intermediate_ca \
-         -days 3650 -notext -md sha256 \
-         -in intermediate/csr/intermediate.csr.pem \
-         -out intermediate/certs/intermediate.cert.pem
+      cd /root/ca
+      openssl ca -config openssl.cnf -extensions v3_intermediate_ca \
+             -days 3650 -notext -md sha256 \
+             -in intermediate/csr/intermediate.csr.pem \
+             -out intermediate/certs/intermediate.cert.pem
 
-   Enter pass phrase for ca.key.pem: secretpassword
-   Sign the certificate? [y/n]: y
+      Enter pass phrase for ca.key.pem: secretpassword
+      Sign the certificate? [y/n]: y
 
-   chmod 444 intermediate/certs/intermediate.cert.pem
+      chmod 444 intermediate/certs/intermediate.cert.pem
 
+   中间证书的有效期应短于根证书, 例如十年。
 
-中间证书的有效期应短于根证书, 例如十年。
+   .. attention::
 
-.. attention::
+      确保指定根CA配置文件 ``/root/ca/openssl.cnf``。
 
-   确保指定根CA配置文件 ``/root/ca/openssl.cnf``。
+   ``index.txt`` 文件是 OpenSSL CA 工具存储证书数据库的位置。 请勿手动删除或编辑此文件。 
+   它现在应该包含一个引用中间证书的行::
 
-``index.txt`` 文件是 OpenSSL ca 工具存储证书数据库的位置。 请勿手动删除或编辑此文件。 
-它现在应该包含一个引用中间证书的行::
-
-   V       290701141133Z           1000    unknown /C=CN/ST=Guangdong/O=Yang Ltd/OU=Yang Ltd Certificate Authority/CN=Yang Ltd Intermediate CA
-
+      V       290701141133Z           1000    unknown /C=CN/ST=Guangdong/O=Yang Ltd/OU=Yang Ltd Certificate Authority/CN=Yang Ltd Intermediate CA
 
 #. 验证中间证书
 
-和验证根证书一样，检查中间证书的详细信息是否正确::
+   和验证根证书一样，检查中间证书的详细信息是否正确::
 
-   openssl x509 -noout -text \
-          -in intermediate/certs/intermediate.cert.pem
+      openssl x509 -noout -text \
+             -in intermediate/certs/intermediate.cert.pem
 
 
-根据根证书验证中间证书::
+   根据根证书验证中间证书::
 
-   openssl verify -CAfile certs/ca.cert.pem \
-           intermediate/certs/intermediate.cert.pem
+      openssl verify -CAfile certs/ca.cert.pem \
+              intermediate/certs/intermediate.cert.pem
 
-如果输出 ``OK`` 表示信任链完好无损::
+   如果输出 ``OK`` 表示信任链完好无损::
 
-   intermediate/certs/intermediate.cert.pem: OK
+      intermediate/certs/intermediate.cert.pem: OK
 
 #. 创建证书链文件
 
-当应用程序(例如，Web浏览器)尝试验证由中间CA签名的证书时，它还必须根据根证书验证中间证书。 
+   当应用程序(例如，Web浏览器)尝试验证由中间CA签名的证书时，它还必须根据根证书验证中间证书。 
 
-要完成信任链，需要创建CA证书链以呈现给应用程序::
+   要完成信任链，需要创建CA证书链以呈现给应用程序::
 
-   cat intermediate/certs/intermediate.cert.pem \
-       certs/ca.cert.pem > intermediate/certs/ca-chain.cert.pem
-   chmod 444 intermediate/certs/ca-chain.cert.pem
+      cat intermediate/certs/intermediate.cert.pem \
+          certs/ca.cert.pem > intermediate/certs/ca-chain.cert.pem
+      chmod 444 intermediate/certs/ca-chain.cert.pem
 
-.. attention::
+   .. attention::
 
-   我们的证书链文件必须包含根证书，因为还没有客户端应用程序知道它。 
-   更好的选择，特别是在管理内网时，是在每个需要连接的客户端上安装根证书, 在这种情况下，链文件只需要包含您的中间证书。
+      我们的证书链文件必须包含根证书，因为还没有客户端应用程序知道它。 
+      更好的选择，特别是在管理内网时，是在每个需要连接的客户端上安装根证书, 在这种情况下，链文件只需要包含您的中间证书。
 
 签署服务器和客户端证书
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -789,124 +787,123 @@ OpenSSL 中一些工具可用作证书颁发机构。
 
 #. 创建密钥
 
-我们的根和中间对是4096位。服务器和客户端证书通常在一年后到期，因此我们可以安全地使用2048位。
+   我们的根和中间对是4096位。服务器和客户端证书通常在一年后到期，因此我们可以安全地使用2048位。
 
-.. hint::
+   .. hint::
 
-   尽管4096位比2048位稍微安全一些，但它会降低TLS握手速度并显着增加握手期间的处理器负载。因此，大多数网站使用2048位对。
+      尽管4096位比2048位稍微安全一些，但它会降低TLS握手速度并显着增加握手期间的处理器负载。因此，大多数网站使用2048位对。
 
-如果要创建用于Web服务器（例如，Apache）的加密对，则每次重新启动Web服务器时都需要输入此密码。 
-您可能希望省略``-aes256``选项以创建没有密码的密钥::
+   如果要创建用于Web服务器（例如，Apache）的加密对，则每次重新启动Web服务器时都需要输入此密码。 
+   您可能希望省略``-aes256``选项以创建没有密码的密钥::
 
-   cd /root/ca
-   openssl genrsa -aes256 \
-         -out intermediate/private/www.example.com.key.pem 2048
-   chmod 400 intermediate/private/www.example.com.key.pem
+      cd /root/ca
+      openssl genrsa -aes256 \
+             -out intermediate/private/www.example.com.key.pem 2048
+      chmod 400 intermediate/private/www.example.com.key.pem
 
 #. 创建证书
 
-使用私钥创建证书签名请求 (CSR)。 CSR详细信息不需要与中间CA匹配。 
+   使用私钥创建证书签名请求 (CSR)。 CSR详细信息不需要与中间CA匹配。 
 
-* 对于服务器证书，公共名称必须是完全限定的域名(例如，www.example.com)。
-* 对于客户端证书，它可以是任何唯一标识符（例如，电子邮件地址）。 
+   * 对于服务器证书，公共名称必须是完全限定的域名(例如，www.example.com)。
+   * 对于客户端证书，它可以是任何唯一标识符（例如，电子邮件地址）。 
 
-请注意，通用名称不能与根证书或中间证书相同。
+   请注意，通用名称不能与根证书或中间证书相同。
 
-::
+   ::
 
-   cd /root/ca
-   openssl req -config intermediate/openssl.cnf \
-         -key intermediate/private/www.example.com.key.pem \
-         -new -sha256 -out intermediate/csr/www.example.com.csr.pem
+      cd /root/ca
+      openssl req -config intermediate/openssl.cnf \
+             -key intermediate/private/www.example.com.key.pem \
+             -new -sha256 -out intermediate/csr/www.example.com.csr.pem
 
-   Enter pass phrase for www.example.com.key.pem: secretpassword
-   You are about to be asked to enter information that will be incorporated
-   into your certificate request.
-   \-----
-   Country Name (2 letter code) [CN]:CN
-   State or Province Name [Guangdong]:Beijing
-   Locality Name [Shenzhen]:Beijing
-   Organization Name [Yang Ltd]:Yang Ltd
-   Organizational Unit Name []:Yang Ltd Web Services
-   Common Name []:www.example.com
-   Email Address []:
+      Enter pass phrase for www.example.com.key.pem: secretpassword
+      You are about to be asked to enter information that will be incorporated
+      into your certificate request.
+      \-----
+      Country Name (2 letter code) [CN]:CN
+      State or Province Name [Guangdong]:Beijing
+      Locality Name [Shenzhen]:Beijing
+      Organization Name [Yang Ltd]:Yang Ltd
+      Organizational Unit Name []:Yang Ltd Web Services
+      Common Name []:www.example.com
+      Email Address []:
 
-要创建证书，请使用中间CA对CSR进行签名。 
+   要创建证书，请使用中间CA对CSR进行签名。 
 
-* 如果要在服务器上使用证书，请使用 server_cert 扩展名。 
-* 如果证书将用于用户身份验证，请使用usr_cert扩展名。 
+   * 如果要在服务器上使用证书，请使用 server_cert 扩展名。 
+   * 如果证书将用于用户身份验证，请使用usr_cert扩展名。 
 
-证书通常有效期为一年，但CA通常会为方便起见提供额外的几天。
+   证书通常有效期为一年，但CA通常会为方便起见提供额外的几天。
 
-``intermediate/index.txt`` 应包含引用此新证书的行::
+   ``intermediate/index.txt`` 应包含引用此新证书的行::
 
-   V       200713143355Z           1000    unknown /C=CN/ST=Beijing/L=Beijing/O=Yang Ltd/OU=Yang Ltd Web Services/CN=www.example.com
+      V       200713143355Z           1000    unknown /C=CN/ST=Beijing/L=Beijing/O=Yang Ltd/OU=Yang Ltd Web Services/CN=www.example.com
 
 #. 验证证书
 
-::
+   ::
 
-   openssl x509 -noout -text \
-           -in intermediate/certs/www.example.com.cert.pem
+      openssl x509 -noout -text \
+             -in intermediate/certs/www.example.com.cert.pem
 
-发行人是中间CA. 主题是指证书本身::
+   发行人是中间CA. 主题是指证书本身::
 
-   Signature Algorithm: sha256WithRSAEncryption
-   Issuer: C = CN, ST = Guangdong, O = Yang Ltd, OU = Yang Ltd Certificate Authority, CN = Yang Ltd Intermediate CA
-   Validity
-      Not Before: Jul  4 14:33:55 2019 GMT
-      Not After : Jul 13 14:33:55 2020 GMT
-   Subject: C = CN, ST = Beijing, L = Beijing, O = Yang Ltd, OU = Yang Ltd Web Services, CN = www.example.com
-   Subject Public Key Info:
-      Public Key Algorithm: rsaEncryption
-         RSA Public-Key: (2048 bit)
+      Signature Algorithm: sha256WithRSAEncryption
+      Issuer: C = CN, ST = Guangdong, O = Yang Ltd, OU = Yang Ltd Certificate Authority, CN = Yang Ltd Intermediate CA
+      Validity
+         Not Before: Jul  4 14:33:55 2019 GMT
+         Not After : Jul 13 14:33:55 2020 GMT
+      Subject: C = CN, ST = Beijing, L = Beijing, O = Yang Ltd, OU = Yang Ltd Web Services, CN = www.example.com
+      Subject Public Key Info:
+         Public Key Algorithm: rsaEncryption
+            RSA Public-Key: (2048 bit)
 
-输出还将显示X509v3扩展。 创建证书时，您使用了 ``server_cert`` 或 ``usr_cert`` 扩展。 
-相应配置部分中的选项将反映在输出中::
+   输出还将显示X509v3扩展。 创建证书时，您使用了 ``server_cert`` 或 ``usr_cert`` 扩展。 
+   相应配置部分中的选项将反映在输出中::
 
-   X509v3 extensions:
-      X509v3 Basic Constraints:
-         CA:FALSE
-      Netscape Cert Type:
-         SSL Server
-      Netscape Comment:
-         OpenSSL Generated Server Certificate
-      X509v3 Subject Key Identifier:
-         1C:65:5D:28:DF:FE:40:36:C1:1A:B4:02:FD:CD:AE:B5:B5:72:BE:F3
-      X509v3 Authority Key Identifier:
-         keyid:A8:10:FC:02:D7:41:51:F7:56:E0:35:94:8B:8F:7D:EB:81:1C:5D:89
-         DirName:/C=CN/ST=Guangdong/L=Shenzhen/O=Yang Ltd/OU=Yang Ltd Certificate Authority/CN=Yang Ltd Root CA
-         serial:10:00
+      X509v3 extensions:
+         X509v3 Basic Constraints:
+            CA:FALSE
+         Netscape Cert Type:
+            SSL Server
+         Netscape Comment:
+            OpenSSL Generated Server Certificate
+         X509v3 Subject Key Identifier:
+            1C:65:5D:28:DF:FE:40:36:C1:1A:B4:02:FD:CD:AE:B5:B5:72:BE:F3
+         X509v3 Authority Key Identifier:
+            keyid:A8:10:FC:02:D7:41:51:F7:56:E0:35:94:8B:8F:7D:EB:81:1C:5D:89
+            DirName:/C=CN/ST=Guangdong/L=Shenzhen/O=Yang Ltd/OU=Yang Ltd Certificate Authority/CN=Yang Ltd Root CA
+            serial:10:00
 
-      X509v3 Key Usage: critical
-         Digital Signature, Key Encipherment
-      X509v3 Extended Key Usage:
-         TLS Web Server Authentication
+         X509v3 Key Usage: critical
+            Digital Signature, Key Encipherment
+         X509v3 Extended Key Usage:
+            TLS Web Server Authentication
 
-使用我们之前创建的CA证书链文件 (ca-chain.cert.pem) 来验证新证书是否具有有效的信任链::
+   使用我们之前创建的CA证书链文件 (ca-chain.cert.pem) 来验证新证书是否具有有效的信任链::
 
-   openssl verify -CAfile intermediate/certs/ca-chain.cert.pem \
-           intermediate/certs/www.example.com.cert.pem
+      openssl verify -CAfile intermediate/certs/ca-chain.cert.pem \
+              intermediate/certs/www.example.com.cert.pem
 
-输出::
+   输出::
 
-   intermediate/certs/www.example.com.cert.pem: OK
-
+      intermediate/certs/www.example.com.cert.pem: OK
 
 #. 部署证书
 
-现在可以将新证书部署到服务器，也可以将证书分发给客户端。 
+   现在可以将新证书部署到服务器，也可以将证书分发给客户端。 
 
-部署到服务器应用程序(例如，Apache)时，需要提供以下文件:
+   部署到服务器应用程序(例如，Apache)时，需要提供以下文件:
 
-* ``ca-chain.cert.pem``
-* ``www.example.com.key.pem``
-* ``www.example.com.cert.pem``
+   * 链文件 (``ca-chain.cert.pem``)
+   * 密钥 (``www.example.com.key.pem``)
+   * 证书 (``www.example.com.cert.pem``)
 
-如果您从第三方签署CSR，则无法访问其私钥，因此您只需要给他们提供以下文件:
+   如果您从第三方签署CSR，则无法访问其私钥，因此您只需要给他们提供以下文件:
 
-* 链文件 (``ca-chain.cert.pem``)
-* 证书 (``www.example.com.cert.pem``)
+   * 链文件 (``ca-chain.cert.pem``)
+   * 证书 (``www.example.com.cert.pem``)
 
 证书撤销列表
 ~~~~~~~~~~~~~
@@ -925,122 +922,122 @@ OpenSSL 中一些工具可用作证书颁发机构。
 
 #. 准备配置文件
 
-当证书颁发机构签署证书时，它通常会将CRL位置编码到证书中。 
-将 ``crlDistributionPoints`` 添加到适当的部分。 
-在我们的示例中，将其添加到 ``[server_cert]`` 部分::
+   当证书颁发机构签署证书时，它通常会将CRL位置编码到证书中。 
+   将 ``crlDistributionPoints`` 添加到适当的部分。 
+   在我们的示例中，将其添加到 ``[server_cert]`` 部分::
 
-   [ server_cert ]
-   # ... snipped ...
-   crlDistributionPoints = URI:http://example.com/intermediate.crl.pem
+      [ server_cert ]
+      # ... snipped ...
+      crlDistributionPoints = URI:http://example.com/intermediate.crl.pem
 
 #. 创建CRL
 
-::
+   ::
 
-   cd /root/ca
-   openssl ca -config intermediate/openssl.cnf \
-           -gencrl -out intermediate/crl/intermediate.crl.pem
+      cd /root/ca
+      openssl ca -config intermediate/openssl.cnf \
+             -gencrl -out intermediate/crl/intermediate.crl.pem
 
-.. seealso::
+   .. seealso::
 
-   ca手册页的 ``CRL OPTIONS`` 部分包含有关如何创建CRL的更多信息。
+      ca手册页的 ``CRL OPTIONS`` 部分包含有关如何创建CRL的更多信息。
 
-您可以使用 ``crl`` 工具检查CRL的内容::
+   您可以使用 ``crl`` 工具检查CRL的内容::
 
-   openssl crl -in intermediate/crl/intermediate.crl.pem -noout -text
+      openssl crl -in intermediate/crl/intermediate.crl.pem -noout -text
 
-尚未撤销任何证书，因此输出将声明 ``No Revoked Certificates``。
+   尚未撤销任何证书，因此输出将声明 ``No Revoked Certificates``。
 
-您应该定期重新创建CRL。默认情况下，CRL在30天后到期, 由 ``[CA_default]`` 部分中的 ``default_crl_days`` 控制。
+   您应该定期重新创建CRL。默认情况下，CRL在30天后到期, 由 ``[CA_default]`` 部分中的 ``default_crl_days`` 控制。
 
 #. 撤销证书
 
-让我们来看一个完整的例子。 
+   让我们来看一个完整的例子。 
 
-阳正在运行Apache Web服务器，并拥有一个私有文件夹。 阳想要授权他的朋友川访问此系列。
+   阳正在运行Apache Web服务器，并拥有一个私有文件夹。 阳想要授权他的朋友川访问此系列。
 
-川创建私钥和证书签名请求(CSR)::
+   川创建私钥和证书签名请求(CSR)::
 
-   cd /home/chuan
-   openssl genrsa -out chuan@example.com.key.pem 2048
-   openssl req -new -key chuan@example.com.key.pem \
-         -out chuan@example.com.csr.pem
+      cd /home/chuan
+      openssl genrsa -out chuan@example.com.key.pem 2048
+      openssl req -new -key chuan@example.com.key.pem \
+             -out chuan@example.com.csr.pem
 
-   You are about to be asked to enter information that will be incorporated
-   into your certificate request.
-   \-----
-   Country Name (2 letter code) [AU]:CN
-   State or Province Name (full name) [Some-State]:Guangxi
-   Locality Name (eg, city) []:
-   Organization Name (eg, company) [Internet Widgits Pty Ltd]:Chuan Ltd
-   Organizational Unit Name (eg, section) []:
-   Common Name (e.g. server FQDN or YOUR name) []:chuan@example.com
-   Email Address []:
+      You are about to be asked to enter information that will be incorporated
+      into your certificate request.
+      \-----
+      Country Name (2 letter code) [AU]:CN
+      State or Province Name (full name) [Some-State]:Guangxi
+      Locality Name (eg, city) []:
+      Organization Name (eg, company) [Internet Widgits Pty Ltd]:Chuan Ltd
+      Organizational Unit Name (eg, section) []:
+      Common Name (e.g. server FQDN or YOUR name) []:chuan@example.com
+      Email Address []:
 
-川将她的CSR发送给阳，阳随后签名并验证证书是否有效::
+   川将她的CSR发送给阳，阳随后签名并验证证书是否有效::
 
-   cd /root/ca
-   openssl ca -config intermediate/openssl.cnf \
-         -extensions usr_cert -notext -md sha256 \
-         -in intermediate/csr/chuan@example.com.csr.pem \
-         -out intermediate/certs/chuan@example.com.cert.pem
+      cd /root/ca
+      openssl ca -config intermediate/openssl.cnf \
+             -extensions usr_cert -notext -md sha256 \
+             -in intermediate/csr/chuan@example.com.csr.pem \
+             -out intermediate/certs/chuan@example.com.cert.pem
 
-   Sign the certificate? [y/n]: y
-   1 out of 1 certificate requests certified, commit? [y/n]: y
+      Sign the certificate? [y/n]: y
+      1 out of 1 certificate requests certified, commit? [y/n]: y
 
 
-   openssl verify -CAfile intermediate/certs/ca-chain.cert.pem \
-         intermediate/certs/chuan@example.com.cert.pem
+      openssl verify -CAfile intermediate/certs/ca-chain.cert.pem \
+              intermediate/certs/chuan@example.com.cert.pem
 
-   intermediate/certs/chuan@example.com.cert.pem: OK
+      intermediate/certs/chuan@example.com.cert.pem: OK
 
-此时，``index.txt`` 文件应包含一个新条目::
+   此时，``index.txt`` 文件应包含一个新条目::
 
-   V       200713143355Z           1000    unknown /C=CN/ST=Beijing/L=Beijing/O=Yang Ltd/OU=Yang Ltd Web Services/CN=www.example.com
-   V       200713151536Z           1001    unknown /C=CN/ST=Guangxi/O=Chuan Ltd/CN=chuan@example.com
+      V       200713143355Z           1000    unknown /C=CN/ST=Beijing/L=Beijing/O=Yang Ltd/OU=Yang Ltd Web Services/CN=www.example.com
+      V       200713151536Z           1001    unknown /C=CN/ST=Guangxi/O=Chuan Ltd/CN=chuan@example.com
 
-阳向川发送签名证书。 
+   阳向川发送签名证书。 
 
-川在她的网络浏览器中安装证书，现在可以访问阳的私人文件夹了，手动滑稽！
+   川在她的网络浏览器中安装证书，现在可以访问阳的私人文件夹了，手动滑稽！
 
-倒霉的是川被黑了，阳发现并需要立即撤销她的访问权限::
+   倒霉的是川被黑了，阳发现并需要立即撤销她的访问权限::
 
-   cd /root/ca
-   openssl ca -config intermediate/openssl.cnf \
-         -revoke intermediate/certs/chuan@example.com.cert.pem
+      cd /root/ca
+      openssl ca -config intermediate/openssl.cnf \
+             -revoke intermediate/certs/chuan@example.com.cert.pem
 
-   Enter pass phrase for intermediate.key.pem: secretpassword
-   Revoking Certificate 1001.
-   Data Base Updated
+      Enter pass phrase for intermediate.key.pem: secretpassword
+      Revoking Certificate 1001.
+      Data Base Updated
 
-此时， ``index.txt`` 中与川的证书对应的行现在以字符R开头。 这意味着证书已被撤销::
+   此时， ``index.txt`` 中与川的证书对应的行现在以字符R开头。 这意味着证书已被撤销::
 
-   V       200713143355Z           1000    unknown /C=CN/ST=Beijing/L=Beijing/O=Yang Ltd/OU=Yang Ltd Web Services/CN=www.example.com
-   R       200713151536Z   190704152120Z   1001    unknown /C=CN/ST=Guangxi/O=Chuan Ltd/CN=chuan@example.com
+      V       200713143355Z           1000    unknown /C=CN/ST=Beijing/L=Beijing/O=Yang Ltd/OU=Yang Ltd Web Services/CN=www.example.com
+      R       200713151536Z   190704152120Z   1001    unknown /C=CN/ST=Guangxi/O=Chuan Ltd/CN=chuan@example.com
 
-在撤销川的证书后，阳必须重新创建CRL。
+   在撤销川的证书后，阳必须重新创建CRL。
 
 #. 服务器端使用CRL
 
-对于客户端证书，它通常是正在进行验证的服务器端应用程序(例如，Apache)。 此应用程序需要具有对CRL的本地访问权限。
+   对于客户端证书，它通常是正在进行验证的服务器端应用程序(例如，Apache)。 此应用程序需要具有对CRL的本地访问权限。
 
-在刚刚的例子中，阳可以将 ``SSLCARevocationPath`` 指令添加到他的Apache配置中，并将CRL复制到他的Web服务器。
-下次川连接到Web服务器时，Apache将根据CRL检查其客户端证书并拒绝访问。
+   在刚刚的例子中，阳可以将 ``SSLCARevocationPath`` 指令添加到他的Apache配置中，并将CRL复制到他的Web服务器。
+   下次川连接到Web服务器时，Apache将根据CRL检查其客户端证书并拒绝访问。
 
-类似地，OpenVPN 有一个 ``crl-verify`` 指令，因此它可以阻止已撤销证书的客户端。
+   类似地，OpenVPN 有一个 ``crl-verify`` 指令，因此它可以阻止已撤销证书的客户端。
 
 #. 客户端使用CRL
 
-对于服务器证书，它通常是执行验证的客户端应用程序(例如，Web浏览器)。 此应用程序必须具有对CRL的远程访问权限。
+   对于服务器证书，它通常是执行验证的客户端应用程序(例如，Web浏览器)。 此应用程序必须具有对CRL的远程访问权限。
 
-如果证书是使用包含 ``crlDistributionPoints`` 的扩展来签名的，则客户端应用程序可以读取此信息并从指定位置获取CRL。
+   如果证书是使用包含 ``crlDistributionPoints`` 的扩展来签名的，则客户端应用程序可以读取此信息并从指定位置获取CRL。
 
-CRL分发点在证书X509v3详细信息中可见::
+   CRL分发点在证书X509v3详细信息中可见::
 
-   X509v3 CRL Distribution Points:
+      X509v3 CRL Distribution Points:
 
-         Full Name:
-            URI:http://example.com/intermediate.crl.pem
+            Full Name:
+               URI:http://example.com/intermediate.crl.pem
 
 在线证书状态协议
 ~~~~~~~~~~~~~~~~~
@@ -1059,145 +1056,145 @@ CRL分发点在证书X509v3详细信息中可见::
 
 #. 准备配置文件
 
-要使用OCSP，CA必须将OCSP服务器位置编码到为其签名的证书中。 
-在我们的示例中，使用 ``[server_cert]`` 部分的 ``authorityInfoAccess`` 选项::
+   要使用OCSP，CA必须将OCSP服务器位置编码到为其签名的证书中。 
+   在我们的示例中，使用 ``[server_cert]`` 部分的 ``authorityInfoAccess`` 选项::
 
-   [ server_cert ]
-   # ... snipped ...
-   authorityInfoAccess = OCSP;URI:http://ocsp.example.com
+      [ server_cert ]
+      # ... snipped ...
+      authorityInfoAccess = OCSP;URI:http://ocsp.example.com
 
 #. 创建OCSP对
 
-OCSP响应者需要用OCSP加密对来签署它发送给请求方的响应。 OCSP加密对与正在检查的证书必须由同一CA签署签名。
+   OCSP响应者需要用OCSP加密对来签署它发送给请求方的响应。 OCSP加密对与正在检查的证书必须由同一CA签署签名。
 
-创建私钥并使用AES-256加密对其进行加密::
+   创建私钥并使用AES-256加密对其进行加密::
 
-   cd /root/ca
-   openssl genrsa -aes256 \
-          -out intermediate/private/ocsp.example.com.key.pem 4096
+      cd /root/ca
+      openssl genrsa -aes256 \
+             -out intermediate/private/ocsp.example.com.key.pem 4096
 
-创建证书签名请求(CSR)。 细节通常应与签名CA的细节匹配。 但是，通用名(Common Name)必须是完全限定的域名::
+   创建证书签名请求(CSR)。 细节通常应与签名CA的细节匹配。 但是，通用名(Common Name)必须是完全限定的域名::
 
-   cd /root/ca
-   openssl req -config intermediate/openssl.cnf -new -sha256 \
-          -key intermediate/private/ocsp.example.com.key.pem \
-          -out intermediate/csr/ocsp.example.com.csr.pem
+      cd /root/ca
+      openssl req -config intermediate/openssl.cnf -new -sha256 \
+            -key intermediate/private/ocsp.example.com.key.pem \
+            -out intermediate/csr/ocsp.example.com.csr.pem
 
-   Enter pass phrase for intermediate.key.pem: secretpassword
-   You are about to be asked to enter information that will be incorporated
-   into your certificate request.
-   \-----
-   Country Name (2 letter code) [CN]:CN
-   State or Province Name [Guangdong]:Guangdong
-   Locality Name [Shenzhen]:
-   Organization Name [Yang Ltd]:Yang Ltd
-   Organizational Unit Name []:Yang Ltd Certificate Authority
-   Common Name []:ocsp.example.com
-   Email Address []:
+      Enter pass phrase for intermediate.key.pem: secretpassword
+      You are about to be asked to enter information that will be incorporated
+      into your certificate request.
+      \-----
+      Country Name (2 letter code) [CN]:CN
+      State or Province Name [Guangdong]:Guangdong
+      Locality Name [Shenzhen]:
+      Organization Name [Yang Ltd]:Yang Ltd
+      Organizational Unit Name []:Yang Ltd Certificate Authority
+      Common Name []:ocsp.example.com
+      Email Address []:
 
-使用中间CA对CSR进行签名::
+   使用中间CA对CSR进行签名::
 
-   openssl ca -config intermediate/openssl.cnf \
-          -extensions ocsp -days 375 -notext -md sha256 \
-          -in intermediate/csr/ocsp.example.com.csr.pem \
-          -out intermediate/certs/ocsp.example.com.cert.pem
+      openssl ca -config intermediate/openssl.cnf \
+             -extensions ocsp -days 375 -notext -md sha256 \
+             -in intermediate/csr/ocsp.example.com.csr.pem \
+             -out intermediate/certs/ocsp.example.com.cert.pem
 
-验证证书是否具有正确的X509v3扩展::
+   验证证书是否具有正确的X509v3扩展::
 
-   openssl x509 -noout -text \
-         -in intermediate/certs/ocsp.example.com.cert.pem
+      openssl x509 -noout -text \
+             -in intermediate/certs/ocsp.example.com.cert.pem
 
-   X509v3 Key Usage: critical
-      Digital Signature
-   X509v3 Extended Key Usage: critical
-      OCSP Signing
+      X509v3 Key Usage: critical
+         Digital Signature
+      X509v3 Extended Key Usage: critical
+         OCSP Signing
 
 #. 撤销证书
 
-OpenSSL ocsp 工具可以充当OCSP响应器，但它仅用于测试。 有可在生产中使用的OCSP响应器，但这些超出了本文的范围。
+   OpenSSL ocsp 工具可以充当OCSP响应器，但它仅用于测试。 有可在生产中使用的OCSP响应器，但这些超出了本文的范围。
 
-创建要测试的服务器证书::
+   创建要测试的服务器证书::
 
-   cd /root/ca
-   openssl genrsa -out intermediate/private/test.example.com.key.pem 2048
-   openssl req -config intermediate/openssl.cnf \
-          -key intermediate/private/test.example.com.key.pem \
-          -new -sha256 -out intermediate/csr/test.example.com.csr.pem
-   openssl ca -config intermediate/openssl.cnf \
-          -extensions server_cert -days 375 -notext -md sha256 \
-          -in intermediate/csr/test.example.com.csr.pem \
-          -out intermediate/certs/test.example.com.cert.pem
+      cd /root/ca
+      openssl genrsa -out intermediate/private/test.example.com.key.pem 2048
+      openssl req -config intermediate/openssl.cnf \
+             -key intermediate/private/test.example.com.key.pem \
+             -new -sha256 -out intermediate/csr/test.example.com.csr.pem
+      openssl ca -config intermediate/openssl.cnf \
+             -extensions server_cert -days 375 -notext -md sha256 \
+             -in intermediate/csr/test.example.com.csr.pem \
+             -out intermediate/certs/test.example.com.cert.pem
 
-在localhost上运行OCSP响应程序。 
+   在 ``localhost`` 上运行OCSP响应程序。 
 
-OCSP响应程序不直接在单独的CRL文件中存储撤销状态，而是直接读取 ``index.txt`` 。 
-响应使用OCSP加密对进行签名(使用 ``-rkey`` 和 ``-rsigner`` 选项)::
+   OCSP响应程序不直接在单独的CRL文件中存储撤销状态，而是直接读取 ``index.txt`` 。 
+   响应使用OCSP加密对进行签名(使用 ``-rkey`` 和 ``-rsigner`` 选项)::
 
-   openssl ocsp -port 2560 \
-          -index intermediate/index.txt \
-          -CA intermediate/certs/ca-chain.cert.pem \
-          -rkey intermediate/private/ocsp.example.com.key.pem \
-          -rsigner intermediate/certs/ocsp.example.com.cert.pem \
-          -nrequest 1 \
-          -text 
+      openssl ocsp -port 2560 \
+             -index intermediate/index.txt \
+             -CA intermediate/certs/ca-chain.cert.pem \
+             -rkey intermediate/private/ocsp.example.com.key.pem \
+             -rsigner intermediate/certs/ocsp.example.com.cert.pem \
+             -nrequest 1 \
+             -text 
 
-   Enter pass phrase for ocsp.example.com.key.pem: secretpassword
+      Enter pass phrase for ocsp.example.com.key.pem: secretpassword
 
-在另一个终端中，向OCSP响应者发送查询。 ``-cert`` 选项指定要查询的证书::
+   在另一个终端中，向OCSP响应者发送查询。 ``-cert`` 选项指定要查询的证书::
 
-   openssl ocsp -CAfile intermediate/certs/ca-chain.cert.pem \
-          -url http://127.0.0.1:2560 -resp_text \
-          -issuer intermediate/certs/intermediate.cert.pem \
-          -cert intermediate/certs/test.example.com.cert.pem
+      openssl ocsp -CAfile intermediate/certs/ca-chain.cert.pem \
+             -url http://127.0.0.1:2560 -resp_text \
+             -issuer intermediate/certs/intermediate.cert.pem \
+             -cert intermediate/certs/test.example.com.cert.pem
 
-输出::
+   输出::
 
-   OCSP Response Data:
-      OCSP Response Status: successful (0x0)
-      Response Type: Basic OCSP Response
-      Version: 1 (0x0)
-      Responder Id: C = CN, ST = Guangdong, L = Shenzhen, O = Yang Ltd, OU = Yang Ltd Certificate Authority, CN = ocsp.example.com
-      Produced At: Jul  4 16:10:49 2019 GMT
-      Responses:
-      Certificate ID:
-         Hash Algorithm: sha1
-         Issuer Name Hash: 3C550CCB561AC011EBD5CA8638D2983A9DEBBAEF
-         Issuer Key Hash: A810FC02D74151F756E035948B8F7DEB811C5D89
-         Serial Number: 1003
-      Cert Status: good
-      This Update: Jul  4 16:10:49 2019 GMT
+      OCSP Response Data:
+         OCSP Response Status: successful (0x0)
+         Response Type: Basic OCSP Response
+         Version: 1 (0x0)
+         Responder Id: C = CN, ST = Guangdong, L = Shenzhen, O = Yang Ltd, OU = Yang Ltd Certificate Authority, CN = ocsp.example.com
+         Produced At: Jul  4 16:10:49 2019 GMT
+         Responses:
+         Certificate ID:
+            Hash Algorithm: sha1
+            Issuer Name Hash: 3C550CCB561AC011EBD5CA8638D2983A9DEBBAEF
+            Issuer Key Hash: A810FC02D74151F756E035948B8F7DEB811C5D89
+            Serial Number: 1003
+         Cert Status: good
+         This Update: Jul  4 16:10:49 2019 GMT
 
-输出的开头显示：
+   输出的开头显示：
 
-* 是否收到成功回复（``OCSP Response Status``）
-* 响应者的身份（``Responder Id``）
-* 证书的撤销状态（``Cert Status``）
+   * 是否收到成功回复（``OCSP Response Status``）
+   * 响应者的身份（``Responder Id``）
+   * 证书的撤销状态（``Cert Status``）
 
-撤销证书::
+   撤销证书::
 
-   openssl ca -config intermediate/openssl.cnf \
-         -revoke intermediate/certs/test.example.com.cert.pem
+      openssl ca -config intermediate/openssl.cnf \
+             -revoke intermediate/certs/test.example.com.cert.pem
 
-   Enter pass phrase for intermediate.key.pem: secretpassword
-   Revoking Certificate 1003.
-   Data Base Updated
+      Enter pass phrase for intermediate.key.pem: secretpassword
+      Revoking Certificate 1003.
+      Data Base Updated
 
-和刚刚一样，运行OCSP响应器并在另一个终端上发送查询。 
+   和刚刚一样，运行OCSP响应器并在另一个终端上发送查询。 
 
-这次，输出显示 ``Cert Status：revoked`` 和 ``Revocation Time``::
+   这次，输出显示 ``Cert Status：revoked`` 和 ``Revocation Time``::
 
-   OCSP Response Data:
-      OCSP Response Status: successful (0x0)
-      Response Type: Basic OCSP Response
-      Version: 1 (0x0)
-      Responder Id: C = CN, ST = Guangdong, L = Shenzhen, O = Yang Ltd, OU = Yang Ltd Certificate Authority, CN = ocsp.example.com
-      Produced At: Jul  4 16:17:29 2019 GMT
-      Responses:
-      Certificate ID:
-         Hash Algorithm: sha1
-         Issuer Name Hash: 3C550CCB561AC011EBD5CA8638D2983A9DEBBAEF
-         Issuer Key Hash: A810FC02D74151F756E035948B8F7DEB811C5D89
-         Serial Number: 1003
-      Cert Status: revoked
-      Revocation Time: Jul  4 16:16:18 2019 GMT
-      This Update: Jul  4 16:17:29 2019 GMT
+      OCSP Response Data:
+         OCSP Response Status: successful (0x0)
+         Response Type: Basic OCSP Response
+         Version: 1 (0x0)
+         Responder Id: C = CN, ST = Guangdong, L = Shenzhen, O = Yang Ltd, OU = Yang Ltd Certificate Authority, CN = ocsp.example.com
+         Produced At: Jul  4 16:17:29 2019 GMT
+         Responses:
+         Certificate ID:
+            Hash Algorithm: sha1
+            Issuer Name Hash: 3C550CCB561AC011EBD5CA8638D2983A9DEBBAEF
+            Issuer Key Hash: A810FC02D74151F756E035948B8F7DEB811C5D89
+            Serial Number: 1003
+         Cert Status: revoked
+         Revocation Time: Jul  4 16:16:18 2019 GMT
+         This Update: Jul  4 16:17:29 2019 GMT
