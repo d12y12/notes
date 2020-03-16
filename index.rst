@@ -60,7 +60,8 @@
   :doc:`Sphinx & ReadTheDocs & GitHub 集成写作环境 <tutorials/Sphinx_RTD_Github>` | 
 
 * **杂记**:
-  :doc:`Linux 杂记 <tutorials/Linux_Miscellaneous>`
+  :doc:`Linux 杂记 <tutorials/Linux_Miscellaneous>` |
+  :doc:`Apple_ID_更换美国区 <tutorials/Apple_ID_更换美国区>`
 
 .. toctree::
    :maxdepth: 3
@@ -69,3 +70,4 @@
 
    tutorials/Linux_Miscellaneous
    tutorials/Sphinx_RTD_Github
+   tutorials/Apple_ID_更换美国区

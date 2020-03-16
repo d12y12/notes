@@ -35,10 +35,11 @@
 ------
 
 * **写作**:
-  `Sphinx & ReadTheDocs & GitHub 集成写作环境 <https://yang.readthedocs.io/zh_CN/latest/tools/Sphinx_RTD_Github.html>`_ |
+  `Sphinx & ReadTheDocs & GitHub 集成写作环境 <https://yang.readthedocs.io/zh_CN/latest/tutorials/Sphinx_RTD_Github.html>`_ |
 
 * **杂记**:
-  `Linux 杂记 <https://yang.readthedocs.io/zh_CN/latest/tools/Linux_Miscellaneous.html>`_
+  `Linux 杂记 <https://yang.readthedocs.io/zh_CN/latest/tutorials/Linux_Miscellaneous.html>`_ |
+  `Apple ID 更换美国区 <https://yang.readthedocs.io/zh_CN/latest/tutorials/Apple_ID_更换美国区.html>`_
 
 全部笔记
 --------
