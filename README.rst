@@ -1,3 +1,5 @@
+:orphan:
+
 欢迎来到Yang的笔记
 ==================
 
@@ -14,6 +16,7 @@
 * **标记语言**:
   `Markdown <https://yang.readthedocs.io/zh_CN/latest/tools/markdown.html>`_ |
   `reStructuredText <https://yang.readthedocs.io/zh_CN/latest/tools/reStructuredText.html>`_
+  `Sphinx <https://yang.readthedocs.io/zh_CN/latest/tools/Sphinx.html>`_
 
 * **环境包管理**:
   `Conda <https://yang.readthedocs.io/zh_CN/latest/tools/Conda.html>`_ |

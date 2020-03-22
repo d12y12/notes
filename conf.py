@@ -18,7 +18,7 @@ source_suffix = {
 }
 
 master_doc = 'index'
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'README.rst', 'tmp']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'tmp']
 templates_path = ['_templates']
 numfig = True
 numfig_format = {

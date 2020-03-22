@@ -19,9 +19,10 @@
 工具篇
 ------
 
-* **标记语言**:
+* **写作工具**:
   :doc:`Markdown <tools/markdown>` |
-  :doc:`reStructuredText <tools/reStructuredText>`
+  :doc:`reStructuredText <tools/reStructuredText>` |
+  :doc:`Sphinx <tools/Sphinx>`
 
 * **环境包管理**:
   :doc:`Conda <tools/Conda>`
@@ -51,6 +52,7 @@
    tools/markdown
    tools/OpenSSL
    tools/reStructuredText
+   tools/Sphinx
    tools/VScode
 
 教程篇
