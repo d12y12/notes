@@ -597,13 +597,18 @@ Conda 使用
   
   使用 ``conda update`` 命令
 
-  升级 conda ::
+  升级 ``conda``::
 
      conda update conda
   
-  升级 anaconda ::
+  升级 ``anaconda``::
 
      conda update anaconda
+  
+  升级所有包::
+
+     conda update -n <ENVIRONMENT_NAME> --all
+
 
 .. seealso::
    

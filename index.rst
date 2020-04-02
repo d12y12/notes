@@ -63,7 +63,8 @@
 
 * **杂记**:
   :doc:`Linux 杂记 <tutorials/Linux_Miscellaneous>` |
-  :doc:`Apple_ID_更换美国区 <tutorials/Apple_ID_更换美国区>`
+  :doc:`Apple_ID_更换美国区 <tutorials/Apple_ID_更换美国区>` |
+  :doc:`杂七杂八 <tutorials/杂七杂八>`
 
 .. toctree::
    :maxdepth: 3
@@ -73,3 +74,4 @@
    tutorials/Linux_Miscellaneous
    tutorials/Sphinx_RTD_Github
    tutorials/Apple_ID_更换美国区
+   tutorials/杂七杂八

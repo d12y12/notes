@@ -42,7 +42,8 @@
 
 * **杂记**:
   `Linux 杂记 <https://yang.readthedocs.io/zh_CN/latest/tutorials/Linux_Miscellaneous.html>`_ |
-  `Apple ID 更换美国区 <https://yang.readthedocs.io/zh_CN/latest/tutorials/Apple_ID_更换美国区.html>`_
+  `Apple ID 更换美国区 <https://yang.readthedocs.io/zh_CN/latest/tutorials/Apple_ID_更换美国区.html>`_ |
+  `杂七杂八 <https://yang.readthedocs.io/zh_CN/latest/tutorials/杂七杂八.html>`_
 
 全部笔记
 --------

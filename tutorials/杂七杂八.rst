@@ -1,0 +1,36 @@
+.. Miscellaneous:
+
+杂七杂八
+===========
+
+Ubuntu 网络消失
+----------------
+
+Ubuntu 网络莫名消失，右上角的小标不见了。
+
+检查状态::
+
+   cat /var/lib/NetworkManager/NetworkManager.state
+   [main]
+   NetworkingEnabled=false
+   WirelessEnabled=true
+   WWANEnabled=true
+
+不知为何 ``NetworkingEnabled`` 变成 ``false`` 了。
+
+修改::
+
+   sudo service network-manager stop
+   # 将 NetworkingEnabled 改为 true
+   sudo vi /var/lib/NetworkManager/NetworkManager.state
+   cat /var/lib/NetworkManager/NetworkManager.state
+   [main]
+   NetworkingEnabled=true
+   WirelessEnabled=true
+   WWANEnabled=true
+   sudo service network-manager start
+
+小标又回来了。。。
+
+
+
