@@ -121,7 +121,8 @@ Docker 安装
 
    然后重启 Docker 服务::
 
-      sudo systemctl enable docker
+      sudo systemctl daemon-reload
+      sudo systemctl restart docker
 
    .. list-table:: Docker 国内源列表
       :header-rows: 1

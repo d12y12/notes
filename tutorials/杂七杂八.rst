@@ -33,4 +33,10 @@ Ubuntu 网络莫名消失，右上角的小标不见了。
 小标又回来了。。。
 
 
+Vim 变成 Visual 模式
+----------------------------
 
+解决方法：
+
+1. 可以创建 ~/.vimrc (或 ~/.vim/vimrc)， 空文件就行。
+2. 在 ``/etc/vim/vimrc`` 文件中去掉注释 ``let g:skip_defaults_vim = 1``
