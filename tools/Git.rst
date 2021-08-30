@@ -568,6 +568,21 @@ openssl 要不停的输入密码， putty agent 的密钥和 GitHub 的 密钥�
 
 .. image:: ../_static/Git/sourcetree_5.png
 
+.. attention::
+
+   ``2021-8-13``后Github需要用 ``personal access token``登录。
+
+   1. 创建token
+
+      登录 Github， 点击 :menuselection:`User --> Settings--> Developer Settings --> Personal access tokens --> Generate new token`
+      生成token
+   
+   2. 更换仓库地址为token授权地址
+
+      .. code-block:: shell
+
+         git remote set-url orginal https://<token>@github.com/<username>/<repo>
+
 VS Code
 ~~~~~~~
 

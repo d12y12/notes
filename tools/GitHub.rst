@@ -172,6 +172,28 @@ SSH 配置
      
    到此为止，你就可以使用 ssh 来访问 GitHub 了。
 
+个人访问令牌
+---------
+
+``2021-8-13`` 后Github需要用 ``personal access token`` 登录。
+
+1. 创建token
+
+   登录 Github， 点击 :menuselection:`User --> Settings--> Developer Settings --> Personal access tokens` 
+   点击 :guilabel:`Generate new token` 生成token
+   
+2. 更换仓库地址为token授权地址
+
+   .. code-block:: shell
+
+      git remote set-url orginal https://<token>@github.com/<username>/<repo>
+
+3. 更新Windows凭证
+   
+   打开 ``Windows凭证管理器`` (:menuselection:`Control Panel --> Windows Credentials`), 
+   找到 ``git:https://github.com`` 点击 :guilabel:`编辑`， 用 `Github Personal Access Token` 替换当前密码。
+   如果没有 ``git:https://github.com`` 就点击 :guilabel:`添加`，添加一个。
+
 创建仓库
 ---------
 
