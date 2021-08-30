@@ -66,6 +66,9 @@
   :doc:`Apple_ID_更换美国区 <tutorials/Apple_ID_更换美国区>` |
   :doc:`杂七杂八 <tutorials/杂七杂八>`
 
+* **服务**:
+  :doc:`EMQX(MQTT Broker) <tutorials/Emqx>`
+
 .. toctree::
    :maxdepth: 3
    :hidden:
@@ -75,3 +78,4 @@
    tutorials/Sphinx_RTD_Github
    tutorials/Apple_ID_更换美国区
    tutorials/杂七杂八
+   tutorials/Emqx
