@@ -67,6 +67,29 @@ EMQX Docker 部署
       -v /home/yang/workspace/emqx/log:/opt/emqx/log \
       emqx/emqx
 
+#. Docker-Compose Yaml
+
+   .. code-block:: shell
+      
+      version: '3.7'
+      services:
+        emqx:
+          image: emqx/emqx
+          container_name: emqx
+          restart: always
+          ports:
+            - 1883:1883
+            - 8081:8081
+            - 8083:8083
+            - 8883:8883
+            - 8084:8084
+            - 18083:18083
+          volumes:
+            - ./etc:/opt/emqx/etc
+            - ./data:/opt/emqx/data
+            - ./lib:/opt/emqx/lib
+            - ./log:/opt/emqx/log
+
 #. 查看Dashboard: ``http://{your ip}:18083``
   
    默认用户名: ``admim``
@@ -120,7 +143,7 @@ EMQX Docker 部署
       }
 
 EMQX 默认端口
-----------
+-------------------
 
 .. list-table:: EMQX 默认端口
       :header-rows: 1

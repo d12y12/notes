@@ -38,31 +38,12 @@ VS Code 配置
 扩展位置
 ~~~~~~~~
 
-如果你跟我一样是便携软件爱好者，肯定不喜欢 VS Code 默认把扩展安装在你的用户目录 ``~/.vscode/extensions/``，
-这样应用程序虽然便携了，但扩展带不走了。 我写了个批处理解决这个问题, 你只需要把这个存成 ``.bat`` 文件，放到
-你想存放 ``extensions`` 的文件夹，运行这个批处理就行了。 
+可以在快捷方式中指定扩展目录位置，例如
 
-.. code-block:: shell
-   :linenos:
+ .. code-block:: shell
 
-   @echo off
-   set destDir=%CD%\extensions
-   if not exist "%destDir%" (md "%destDir%")
-   if exist "%UserProfile%\.vscode\extensions" (xcopy "%UserProfile%\.vscode\extensions" "%destDir%" /v /s /e /k /y)
-   if exist "%UserProfile%\.vscode\extensions" (rd /S /Q "%UserProfile%\.vscode\extensions")
-   mklink /D "%UserProfile%\.vscode\extensions" "%destDir%"
+    D:\tools\VSCode\Code.exe --extensions-dir "E:\environment\vscode-extensions"
 
-简单解释一下:
-
-* 行 2: 设置目标目录为当前目录下的 ``extensions`` 目录
-* 行 3: 检查目录是否存在，不存在则创建
-* 行 4: 检查之前 VS Code 默认目录是否存在，存在就把里面的扩展考到这边
-* 行 5: 删除默认目录
-* 行 6: 创建一个目录符号链接
-
-从 VS Code 角度看，默认目录还在那，只不过它已经链接到你指定的目录了。
-
-以后凡是遇到默认目录不能改的，你都可以用符号链接来解决。
 
 快捷键
 ~~~~~~
