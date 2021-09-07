@@ -5,11 +5,7 @@ Conda
 
 .. image:: ../_static/Conda/conda_logo.png
    :height: 100
-   :target: Conda_
-
-.. _Conda: https://conda.io/projects/conda/en/latest/
-
-|   
+   :target: https://conda.io/projects/conda/en/latest/
 
 Conda 是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，
 并在它们之间轻松切换。Conda 是为 Python 程序创建的，适用于 Linux，OS X 和 Windows，
@@ -485,6 +481,27 @@ Conda 使用
   ::
   
      conda remove --name <ENVNAME> --all
+
+手动创建环境文件
+################
+
+例如
+
+::
+
+  name: test-env
+  dependencies:
+  - python>=3.5
+  - anaconda
+  - pip
+  - numpy=1.13.3  # pin version for conda
+  - pip:
+    # works for regular pip packages
+    - docx
+    - gooey
+    - matplotlib==2.0.0  # pin version for pip
+    # and for wheels
+    - http://www.lfd.uci.edu/~gohlke/pythonlibs/bofhrmxk/opencv_python-3.1.0-cp35-none-win_amd64.whl
 
 包
 ~~~~~

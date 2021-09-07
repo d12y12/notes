@@ -22,7 +22,8 @@
 * **写作工具**:
   :doc:`Markdown <tools/markdown>` |
   :doc:`reStructuredText <tools/reStructuredText>` |
-  :doc:`Sphinx <tools/Sphinx>`
+  :doc:`Sphinx <tools/Sphinx>` |
+  :doc:`PlantUML <tools/PlantUML>`
 
 * **环境包管理**:
   :doc:`Conda <tools/Conda>`
@@ -51,6 +52,7 @@
    tools/GitHub
    tools/markdown
    tools/OpenSSL
+   tools/PlantUML
    tools/reStructuredText
    tools/Sphinx
    tools/VScode
