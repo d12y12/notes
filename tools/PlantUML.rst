@@ -3,7 +3,7 @@
 PlantUML
 ====================
 
-.. image:: ../_static/PlantUML/pPlantUML_logo.png
+.. image:: ../_static/PlantUML/PlantUML_logo.png
    :height: 100
    :target: https://plantuml.com/zh/
 
