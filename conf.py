@@ -10,6 +10,7 @@ from datetime import datetime
 extensions = [
     'sphinx.ext.autosectionlabel',
     'recommonmark',
+    'sphinxcontrib.plantuml',
 ]
 
 source_suffix = {
@@ -58,3 +59,7 @@ latex_use_xindy = False
 latex_elements = {
     'preamble': '\\usepackage[UTF8]{ctex}\n',
 }
+
+## PlantUML
+plantuml = 'java -jar .\\_utils\\plantuml.jar'
+plantuml_output_format = 'png'
